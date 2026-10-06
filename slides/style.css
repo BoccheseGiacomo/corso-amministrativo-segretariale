@@ -641,6 +641,8 @@ mark.ph { background: var(--amber-l); color: #8A6400; padding: 0 4px; border-rad
 
 .ex-diff mark { white-space: nowrap; }
 
+.lab-tip { margin: -6px 0 12px; }
+
 /* ==========================================================
    Interfaccia (fuori dalla slide)
    ========================================================== */
