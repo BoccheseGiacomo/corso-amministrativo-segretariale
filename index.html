@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI per la gestione documentale</title>
+<meta name="description" content="Materiali del corso: slide, file per gli esperimenti, scheda riassuntiva e quiz.">
+<style>
+  :root {
+    --bg: #F6F8FA; --surface: #FFFFFF; --ink: #1B2733; --muted: #5B6B7A; --line: #DCE3EA;
+    --navy: #0F2A43; --teal: #0E9F8E; --teal-d: #0B7F72; --teal-l: #E3F4F2;
+    --orange: #E0731F; --orange-d: #B85A12; --orange-l: #FDEEDF;
+    --amber-l: #FFF5D6;
+    --font: "Segoe UI", "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    --mono: "Cascadia Code", Consolas, "SF Mono", Menlo, monospace;
+    --shadow: 0 1px 2px rgba(15,42,67,.06), 0 6px 20px rgba(15,42,67,.07);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    font-family: var(--font); color: var(--ink); -webkit-font-smoothing: antialiased;
+    background: radial-gradient(circle at 90% 0%, rgba(14,159,142,.12), transparent 40%), var(--bg);
+    min-height: 100vh;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 48px 24px 40px; }
+  .kicker { font-size: 14px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--teal-d); margin: 0 0 10px; }
+  h1 { font-size: clamp(34px, 5vw, 56px); line-height: 1.05; color: var(--navy); margin: 0; letter-spacing: -.02em; }
+  .lead { font-size: clamp(17px, 2vw, 21px); color: var(--muted); margin: 14px 0 0; }
+  .url {
+    margin: 30px 0 34px; padding: 18px 22px; border-radius: 16px; background: var(--navy); color: #fff;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px;
+  }
+  .url span { font-size: 14px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #7FD8CC; }
+  .url a { font: 600 clamp(17px, 2.6vw, 28px) var(--mono); color: #fff; text-decoration: none; word-break: break-all; }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px;
+    box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 12px; position: relative;
+  }
+  .card h2 { margin: 0; font-size: 24px; color: var(--navy); display: flex; align-items: center; gap: 12px; }
+  .card p { margin: 0; font-size: 16px; line-height: 1.45; color: var(--muted); }
+  .ic { width: 40px; height: 40px; padding: 8px; border-radius: 10px; flex: none;
+        fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .c-slide .ic { background: var(--teal-l); color: var(--teal-d); }
+  .c-mat .ic { background: var(--orange-l); color: var(--orange-d); }
+  .c-sheet .ic { background: #EAF0F8; color: #2F6DB5; }
+  .c-quiz .ic { background: var(--amber-l); color: #A67700; }
+  .btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 10px;
+    font: 600 16px var(--font); text-decoration: none; border: 1px solid transparent; cursor: pointer;
+  }
+  .btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .btn-main { background: var(--navy); color: #fff; }
+  .btn-main:hover { background: #1D4366; }
+  .btn-soft { background: var(--bg); color: var(--navy); border-color: var(--line); }
+  .btn-soft:hover { background: var(--teal-l); }
+  .warn {
+    display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 10px;
+    background: var(--amber-l); color: #7A5600; font-weight: 600; font-size: 15px;
+  }
+  .warn svg { width: 22px; height: 22px; flex: none; fill: none; stroke: #C48A00; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .c-quiz { border: 2px dashed #E9C76B; }
+  footer { margin-top: 34px; font-size: 14px; color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+  @media (max-width: 720px) {
+    .wrap { padding: 28px 16px; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">Operatore amministrativo segretariale</p>
+  <h1>AI per la gestione documentale</h1>
+  <p class="lead">Materiali del corso: slide, file per gli esperimenti, scheda riassuntiva e quiz.</p>
+
+  <div class="url">
+    <span>Apri questa pagina</span>
+    <a href="https://bocchesegiacomo.github.io/corso-amministrativo-segretariale/">bocchesegiacomo.github.io/corso-amministrativo-segretariale</a>
+  </div>
+
+  <div class="grid">
+    <section class="card c-slide">
+      <h2><svg class="ic" viewBox="0 0 24 24"><path d="M3 4h18v12H3z M8 20h8M12 16v4"/></svg>Slide</h2>
+      <p>Le slide della lezione, con le richieste da copiare negli esperimenti.</p>
+      <div class="btns">
+        <a class="btn btn-main" href="slides/"><svg viewBox="0 0 24 24"><path d="M5 12h14 M13 6l6 6-6 6"/></svg>Apri le slide</a>
+      </div>
+    </section>
+
+    <section class="card c-mat">
+      <h2><svg class="ic" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z M15 3v4h4 M9 12h6M9 16h6"/></svg>Materiali</h2>
+      <p>I file da allegare nella chat durante gli esperimenti. Dati di fantasia.</p>
+      <div class="btns">
+        <a class="btn btn-soft dl" href="materiali/regolamento_segreteria_occhialeria_dolomiti.pdf" download target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 4v11 M7.5 10.5L12 15l4.5-4.5 M5 19h14"/></svg>Regolamento (PDF)</a>
+        <a class="btn btn-soft dl" href="materiali/vendite_occhialeria_dolomiti.xlsx" download target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 4v11 M7.5 10.5L12 15l4.5-4.5 M5 19h14"/></svg>Vendite (Excel)</a>
+      </div>
+    </section>
+
+    <section class="card c-sheet">
+      <h2><svg class="ic" viewBox="0 0 24 24"><path d="M5 4h14v16H5z M9 9h6M9 13h6M9 17h3"/></svg>Scheda riassuntiva</h2>
+      <p>Una pagina con le cose più importanti: come scrivere le richieste, cosa verificare, privacy.</p>
+      <div class="btns">
+        <a class="btn btn-soft dl" href="materiali/scheda_riassuntiva.pdf" download target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 4v11 M7.5 10.5L12 15l4.5-4.5 M5 19h14"/></svg>Scarica la scheda (PDF)</a>
+      </div>
+    </section>
+
+    <section class="card c-quiz">
+      <h2><svg class="ic" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6 M12 17h.01"/></svg>Quiz</h2>
+      <p class="warn"><svg viewBox="0 0 24 24"><path d="M12 3.5l9.5 17h-19z M12 10v4.5M12 17.5h.01"/></svg>Non aprire finché non lo dice il docente.</p>
+      <p>10 domande di autovalutazione. Non è un voto: serve a ripassare.</p>
+      <div class="btns">
+        <a class="btn btn-soft" href="quiz/"><svg viewBox="0 0 24 24"><path d="M5 12h14 M13 6l6 6-6 6"/></svg>Apri il quiz</a>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <span>Giacomo Bocchese</span>
+    <span>Aziende, persone e dati nei materiali sono di fantasia.</span>
+  </footer>
+</div>
+
+<script>
+  /* Scarica i file invece di aprirli nel browser; se non è possibile, li apre in una nuova scheda. */
+  document.querySelectorAll("a.dl").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      var href = a.getAttribute("href");
+      fetch(href).then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        return r.blob();
+      }).then(function (blob) {
+        var url = URL.createObjectURL(blob);
+        var tmp = document.createElement("a");
+        tmp.href = url;
+        tmp.download = href.split("/").pop();
+        document.body.appendChild(tmp);
+        tmp.click();
+        document.body.removeChild(tmp);
+        setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+      }).catch(function () { window.open(href, "_blank"); });
+    });
+  });
+</script>
+</body>
+</html>

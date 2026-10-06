@@ -1,0 +1,1064 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI per la gestione documentale</title>
+<meta name="description" content="Slide teoriche — uso dell'intelligenza artificiale per la gestione documentale in segreteria.">
+<link rel="stylesheet" href="style.css?v=15">
+<script src="deck.js?v=15" defer></script>
+</head>
+<body>
+
+<!-- Icone (SVG sprite) -->
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-type" viewBox="0 0 24 24"><path d="M5 7V5h14v2M12 5v14M9 19h6"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12L20 4l-6 16-3-7z"/></symbol>
+  <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z M14 6l4 4"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 5v5h-5 M4 19v-5h5 M5.6 9A7 7 0 0 1 18 7.5L20 10 M18.4 15A7 7 0 0 1 6 16.5L4 14"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h7 M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></symbol>
+  <symbol id="i-docq" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z M15 3v4h4 M10 11.5a2 2 0 1 1 3 1.7c-.6.4-1 .8-1 1.5 M12 18h.01"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><path d="M4 5h16v14H4z M4 16l5-5 4 4 3-3 4 4 M15.5 9h.01"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20h16 M7 16v-5 M12 16V7 M17 16v-8"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><path d="M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M4 21a8 8 0 0 1 16 0"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 6h18v12H3z M3 7l9 6 9-6"/></symbol>
+  <symbol id="i-pc" viewBox="0 0 24 24"><path d="M3 4h18v12H3z M8 20h8M12 16v4"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z M15 3v4h4 M9 12h6M9 16h6"/></symbol>
+  <symbol id="i-clip" viewBox="0 0 24 24"><path d="M20 11l-8.5 8.5a5 5 0 0 1-7-7L13 4a3.5 3.5 0 0 1 5 5l-8.5 8.5a2 2 0 0 1-3-3L14 7"/></symbol>
+  <symbol id="i-history" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7L4 8.5 M4 4v4.5h4.5 M12 8v4l3 2"/></symbol>
+  <symbol id="i-note" viewBox="0 0 24 24"><path d="M5 4h14v16H5z M9 9h6M9 13h6M9 17h3"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3.5l9.5 17h-19z M12 10v4.5M12 17.5h.01"/></symbol>
+  <symbol id="i-thumb" viewBox="0 0 24 24"><path d="M7 11v9H4v-9z M7 11l4-8a2 2 0 0 1 3 2l-1 5h6a2 2 0 0 1 2 2.3l-1.4 6.4A2 2 0 0 1 17.6 20H7"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18a5 5 0 0 1-.6-10A6 6 0 0 1 18 9a4.5 4.5 0 0 1-1 9z M12 11v6 M9.5 13.5L12 11l2.5 2.5"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14z M20 20l-4-4"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><path d="M9 9h11v11H9z M5 15H4V4h11v1"/></symbol>
+  <symbol id="i-sigma" viewBox="0 0 24 24"><path d="M18 5H6l6 7-6 7h12"/></symbol>
+  <symbol id="i-eyeoff" viewBox="0 0 24 24"><path d="M3 3l18 18 M10.6 6.1A9.6 9.6 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-3 3.4 M6.6 6.6C4.3 8.1 3 12 3 12s4 6 9 6a9 9 0 0 0 4.4-1.1 M9.9 9.9a3 3 0 0 0 4.2 4.2"/></symbol>
+  <symbol id="i-sign" viewBox="0 0 24 24"><path d="M3 21h18 M5 17L15 7l3 3L8 20H5z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><path d="M5 11h14v10H5z M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M4 8h14l-4-4 M20 16H6l4 4"/></symbol>
+  <symbol id="i-msg-q" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z M10 9a2 2 0 1 1 2.8 1.8c-.5.3-.8.7-.8 1.2 M12 14h.01"/></symbol>
+  <symbol id="i-pill" viewBox="0 0 24 24"><path d="M10.6 3.9a5 5 0 0 1 7 7l-6.7 6.7a5 5 0 0 1-7-7z M7.2 7.2l7 7"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M3 12h18 M12 3c2.5 2.5 3.8 5.5 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.5-3.8-9S9.5 5.5 12 3z"/></symbol>
+  <symbol id="i-dl" viewBox="0 0 24 24"><path d="M12 4v11 M7.5 10.5L12 15l4.5-4.5 M5 19h14"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z M2.5 20a6.5 6.5 0 0 1 13 0 M16 4.3a3.5 3.5 0 0 1 0 6.4 M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V5l8-2v18 M12 8h8v13 M3 21h18 M7 8h2M7 12h2M7 16h2M15 12h2M15 16h2"/></symbol>
+</svg>
+
+<main class="stage" id="stage" aria-live="polite">
+
+<!-- ============ 1 · TITOLO ============ -->
+<section class="slide s-title" data-title="Titolo">
+  <div class="title-grid">
+    <div class="title-text">
+      <p class="kicker">Operatore amministrativo segretariale</p>
+      <h1>AI per la gestione documentale</h1>
+      <p class="lead">Strumenti, metodo e uso responsabile dell'intelligenza artificiale in segreteria</p>
+      <p class="author"><span class="author-bar"></span>Giacomo Bocchese</p>
+    </div>
+    <div class="title-art" aria-hidden="true">
+      <svg viewBox="0 0 520 460">
+        <defs>
+          <linearGradient id="g-blob" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#0E9F8E" stop-opacity=".18"/>
+            <stop offset="1" stop-color="#0F2A43" stop-opacity=".10"/>
+          </linearGradient>
+        </defs>
+        <circle cx="290" cy="230" r="215" fill="url(#g-blob)"/>
+        <!-- documenti dietro -->
+        <g transform="rotate(-9 140 150)">
+          <rect x="60" y="60" width="170" height="220" rx="14" fill="#fff" stroke="#C9D5E0" stroke-width="2"/>
+          <rect x="84" y="92" width="96" height="12" rx="6" fill="#0F2A43" opacity=".75"/>
+          <rect x="84" y="122" width="122" height="8" rx="4" fill="#C9D5E0"/>
+          <rect x="84" y="142" width="110" height="8" rx="4" fill="#C9D5E0"/>
+          <rect x="84" y="162" width="122" height="8" rx="4" fill="#C9D5E0"/>
+          <rect x="84" y="182" width="80" height="8" rx="4" fill="#C9D5E0"/>
+          <rect x="84" y="214" width="122" height="40" rx="6" fill="#E3F4F2"/>
+        </g>
+        <g transform="rotate(6 420 330)">
+          <rect x="350" y="250" width="140" height="170" rx="14" fill="#fff" stroke="#C9D5E0" stroke-width="2"/>
+          <rect x="372" y="370" width="16" height="30" rx="3" fill="#0E9F8E" opacity=".55"/>
+          <rect x="396" y="345" width="16" height="55" rx="3" fill="#0E9F8E" opacity=".75"/>
+          <rect x="420" y="320" width="16" height="80" rx="3" fill="#0E9F8E"/>
+          <rect x="444" y="355" width="16" height="45" rx="3" fill="#0E9F8E" opacity=".65"/>
+          <rect x="372" y="272" width="80" height="10" rx="5" fill="#0F2A43" opacity=".75"/>
+        </g>
+        <!-- finestra chat -->
+        <g>
+          <rect x="150" y="110" width="290" height="250" rx="18" fill="#fff" stroke="#0F2A43" stroke-width="2.5"/>
+          <path d="M150 128a18 18 0 0 1 18-18h254a18 18 0 0 1 18 18v20H150z" fill="#0F2A43"/>
+          <circle cx="172" cy="130" r="5" fill="#fff" opacity=".5"/>
+          <circle cx="188" cy="130" r="5" fill="#fff" opacity=".5"/>
+          <circle cx="204" cy="130" r="5" fill="#fff" opacity=".5"/>
+          <!-- bolla utente -->
+          <rect x="268" y="166" width="154" height="44" rx="14" fill="#0E9F8E"/>
+          <rect x="284" y="181" width="104" height="7" rx="3.5" fill="#fff" opacity=".9"/>
+          <rect x="284" y="194" width="70" height="7" rx="3.5" fill="#fff" opacity=".7"/>
+          <!-- allegato -->
+          <rect x="300" y="218" width="122" height="30" rx="8" fill="#E3F4F2" stroke="#0E9F8E" stroke-width="1.5"/>
+          <rect x="310" y="225" width="12" height="16" rx="2" fill="#0E9F8E"/>
+          <rect x="330" y="230" width="76" height="6" rx="3" fill="#0E9F8E" opacity=".6"/>
+          <!-- bolla risposta -->
+          <rect x="168" y="262" width="196" height="76" rx="14" fill="#EEF2F6"/>
+          <rect x="184" y="278" width="150" height="7" rx="3.5" fill="#5B6B7A" opacity=".55"/>
+          <rect x="184" y="292" width="164" height="7" rx="3.5" fill="#5B6B7A" opacity=".55"/>
+          <rect x="184" y="306" width="128" height="7" rx="3.5" fill="#5B6B7A" opacity=".55"/>
+          <rect x="184" y="320" width="90" height="7" rx="3.5" fill="#5B6B7A" opacity=".55"/>
+        </g>
+        <!-- scintilla -->
+        <path d="M455 120l7 17 17 7-17 7-7 17-7-17-17-7 17-7z" fill="#0E9F8E"/>
+        <path d="M110 330l4 10 10 4-10 4-4 10-4-10-10-4 10-4z" fill="#0F2A43" opacity=".6"/>
+      </svg>
+    </div>
+  </div>
+  <aside class="notes">
+    Presentazione: chi sono, cosa faremo oggi. Domanda veloce alla classe: "Chi ha già usato ChatGPT o un altro assistente? Per cosa?".
+    Ricordare: appello su IDO già fatto (entro le 9:15).
+  </aside>
+</section>
+
+<!-- ============ 2 · PROGRAMMA ============ -->
+<section class="slide" data-title="Programma">
+  <p class="kicker">Introduzione</p>
+  <h2>Programma</h2>
+  <div class="agenda">
+    <ol class="agenda-track">
+      <li class="t-theory"><span class="dot">1</span><strong>Strumenti e concetti di base</strong></li>
+      <li class="t-lab"><span class="dot">2</span><strong>Pratica</strong><span>Scrivere comunicazioni</span></li>
+      <li class="t-lab"><span class="dot">3</span><strong>Pratica</strong><span>Comprendere un documento</span></li>
+      <li class="t-lab"><span class="dot">4</span><strong>Dati e formule</strong><span>Teoria e pratica</span></li>
+      <li class="t-theory"><span class="dot">5</span><strong>Sicurezza e uso responsabile</strong></li>
+      <li class="t-quiz"><span class="dot">6</span><strong>Quiz di autovalutazione</strong></li>
+    </ol>
+    <div class="legend">
+      <span><i class="sw sw-theory"></i>Teoria</span>
+      <span><i class="sw sw-lab"></i>Pratica</span>
+      <span><i class="sw sw-quiz"></i>Verifica (non valutata)</span>
+    </div>
+  </div>
+  <p class="bottom-line">Si lavora su un'azienda di fantasia: <strong>Occhialeria Dolomiti Srl</strong>. Nessun dato reale.</p>
+  <aside class="notes">
+    La teoria è breve: la maggior parte del tempo è pratica, in coppia. Dopo ogni esperimento vediamo insieme cosa abbiamo imparato.
+    La parte sulla sicurezza è alla fine perché useremo gli errori visti durante gli esperimenti.
+    Il quiz non è valutato: serve a capire cosa ci portiamo a casa.
+  </aside>
+</section>
+
+<!-- ============ 3 · STRUMENTI ============ -->
+<section class="slide" data-title="Gli strumenti">
+  <p class="kicker">Strumenti e concetti di base</p>
+  <h2>Gli strumenti</h2>
+  <div class="tools">
+    <article class="tool tool-reco">
+      <span class="badge">Migliori prestazioni</span>
+      <div class="mono m1">Cl</div>
+      <h3>Claude</h3>
+      <p class="maker">Anthropic</p>
+      <p class="url">claude.ai</p>
+    </article>
+    <article class="tool">
+      <div class="mono m2">GPT</div>
+      <h3>ChatGPT</h3>
+      <p class="maker">OpenAI</p>
+      <p class="url">chatgpt.com</p>
+    </article>
+    <article class="tool tool-reco">
+      <span class="badge">Registrazione più semplice</span>
+      <div class="mono m3">Ge</div>
+      <h3>Gemini</h3>
+      <p class="maker">Google</p>
+      <p class="url">gemini.google.com</p>
+    </article>
+    <article class="tool">
+      <div class="mono m4">Co</div>
+      <h3>Copilot</h3>
+      <p class="maker">Microsoft</p>
+      <p class="url">copilot.microsoft.com</p>
+    </article>
+  </div>
+  <div class="steps">
+    <div class="step"><svg class="ic"><use href="#i-chat"/></svg><span><b>1</b> Apri una nuova chat</span></div>
+    <i class="arrow" aria-hidden="true"></i>
+    <div class="step"><svg class="ic"><use href="#i-plus"/></svg><span><b>2</b> Allega un file con <kbd>+</kbd> <em>(se serve)</em></span></div>
+    <i class="arrow" aria-hidden="true"></i>
+    <div class="step"><svg class="ic"><use href="#i-type"/></svg><span><b>3</b> Scrivi la richiesta</span></div>
+    <i class="arrow" aria-hidden="true"></i>
+    <div class="step"><svg class="ic"><use href="#i-send"/></svg><span><b>4</b> Premi invio</span></div>
+  </div>
+  <p class="bottom-line">Funzionano tutti allo stesso modo: scegli quello che preferisci.</p>
+  <aside class="notes">
+    Claude: le prestazioni migliori. Gemini: la registrazione più semplice, basta l'account Google. ChatGPT e Copilot vanno bene comunque.
+    Senza credenziali: duck.ai o ChatGPT senza login per scrivere e chattare, oppure lavoro in coppia.
+    Primo messaggio di prova: "Ciao, presentati in due righe e dimmi tre cose che puoi fare per chi lavora in segreteria."
+  </aside>
+</section>
+
+<!-- ============ 4 · VERSIONI ============ -->
+<section class="slide" data-title="Versioni e modelli">
+  <p class="kicker">Strumenti e concetti di base</p>
+  <h2>Versioni e modelli</h2>
+  <div class="versions">
+    <table class="tbl">
+      <thead>
+        <tr><th></th><th>Gratuita</th><th class="th-pro">A pagamento</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>Accesso</th><td>Con un account</td><td>Abbonamento, circa 20&nbsp;€ al mese</td></tr>
+        <tr><th>Modelli</th><td>Buoni per l'uso quotidiano</td><td>Più capaci nei compiti complessi</td></tr>
+        <tr><th>Limiti</th><td>Messaggi e file limitati</td><td>Limiti più alti</td></tr>
+        <tr><th>Adatta per</th><td>Imparare, uso occasionale</td><td>Uso intensivo, lavoro quotidiano</td></tr>
+      </tbody>
+    </table>
+    <div class="side-boxes">
+      <div class="box">
+        <h3><svg class="ic"><use href="#i-code"/></svg>Modelli aperti</h3>
+        <p>Llama, Mistral, Qwen, DeepSeek.</p>
+        <p>Si possono installare sui computer dell'azienda: <strong>i dati restano interni</strong>.</p>
+      </div>
+      <div class="box">
+        <h3><svg class="ic"><use href="#i-building"/></svg>Versioni aziendali</h3>
+        <p>Contratti dedicati alle aziende: di norma <strong>non usano i dati</strong> per addestrare i modelli.</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    Informativo, non promozionale: serve a capire perché oggi potreste incontrare dei limiti (numero di messaggi, file caricabili).
+    Modelli aperti: un'azienda può tenerli "in casa", utile quando i dati sono riservati. Ci torniamo nella parte sulla sicurezza.
+  </aside>
+</section>
+
+<!-- ============ 5 · CONTESTO ============ -->
+<section class="slide" data-title="Cosa vede il modello">
+  <p class="kicker">Strumenti e concetti di base</p>
+  <h2>Cosa vede il modello</h2>
+  <div class="context">
+    <div class="ctx-in">
+      <p class="ctx-label"><svg class="ic"><use href="#i-check"/></svg>Vede: ciò che è nella chat</p>
+      <ul>
+        <li><svg class="ic"><use href="#i-type"/></svg>La tua richiesta</li>
+        <li><svg class="ic"><use href="#i-clip"/></svg>I file allegati</li>
+        <li><svg class="ic"><use href="#i-history"/></svg>I messaggi precedenti di questa chat</li>
+      </ul>
+    </div>
+    <div class="ctx-out">
+      <p class="ctx-label"><svg class="ic"><use href="#i-eyeoff"/></svg>Non vede: tutto il resto</p>
+      <ul>
+        <li><svg class="ic"><use href="#i-pc"/></svg>Gli altri file del computer</li>
+        <li><svg class="ic"><use href="#i-mail"/></svg>La tua posta</li>
+        <li><svg class="ic"><use href="#i-doc"/></svg>Il documento aperto in Word</li>
+        <li><svg class="ic"><use href="#i-chat"/></svg>Le altre chat</li>
+      </ul>
+    </div>
+  </div>
+  <div class="msg-row">
+    <p class="key-msg">Se gli serve un'informazione, <strong>va scritta o allegata</strong>.</p>
+    <div class="try">
+      <span class="try-tag">Prova</span>
+      <div class="prompt"><span class="prompt-text">Riassumi il documento.</span></div>
+      <span class="try-note">senza allegare nulla</span>
+    </div>
+  </div>
+  <aside class="notes">
+    Dimostrazione dal vivo:
+    1) Nuova chat, "Riassumi il documento." senza allegati: chiede il documento oppure ne inventa uno (se inventa, è perfetto: contesto + allucinazione).
+    2) Allegare il regolamento dell'esperimento 2 e ripetere: ora lo vede.
+    3) Nuova chat: "Cosa ti ho chiesto prima?" — non lo sa.
+  </aside>
+</section>
+
+<!-- ============ 6 · CHAT E MEMORIA ============ -->
+<section class="slide" data-title="Chat e memoria">
+  <p class="kicker">Strumenti e concetti di base</p>
+  <h2>Chat e memoria</h2>
+  <div class="chats">
+    <div class="chatcard">
+      <p class="chat-title">Chat 1 · Email al cliente</p>
+      <div class="bub b-user"></div><div class="bub b-ai"></div><div class="bub b-ai short"></div>
+    </div>
+    <div class="wall" aria-hidden="true"></div>
+    <div class="chatcard">
+      <p class="chat-title">Chat 2 · Circolare ferie</p>
+      <div class="bub b-user"></div><div class="bub b-ai"></div><div class="bub b-ai short"></div>
+    </div>
+    <div class="wall" aria-hidden="true"></div>
+    <div class="chatcard chat-new">
+      <p class="chat-title">Chat 3 · Nuova</p>
+      <p class="chat-empty">Non sa nulla<br>delle altre chat</p>
+    </div>
+  </div>
+  <div class="mem-row">
+    <div class="memory">
+      <p class="mem-title"><svg class="ic"><use href="#i-note"/></svg>Memoria</p>
+      <p>Alcuni strumenti salvano <strong>brevi appunti</strong> tra una chat e l'altra:</p>
+      <div class="chips"><span>lavora in segreteria</span><span>preferisce un tono formale</span></div>
+      <p class="mem-no">Non conserva i documenti né le conversazioni intere.</p>
+    </div>
+    <div class="rule-pair">
+      <div><svg class="ic"><use href="#i-plus"/></svg><p><strong>Lavoro nuovo</strong> → apri una nuova chat</p></div>
+      <div><svg class="ic"><use href="#i-history"/></svg><p><strong>Stesso lavoro</strong> → resta nella stessa chat</p></div>
+      <div><svg class="ic"><use href="#i-swap"/></svg><p><strong>Chat troppo lunga</strong> → aprine una nuova, portando un riassunto</p></div>
+    </div>
+  </div>
+  <div class="handoff">
+    <span class="try-tag">Per passare a una nuova chat</span>
+    <div class="prompt"><span class="prompt-text">Riassumi in maniera molto dettagliata il lavoro fatto finora, così posso continuare in una nuova chat.</span></div>
+  </div>
+  <aside class="notes">
+    Ogni chat è indipendente. La memoria, dove esiste, conserva solo qualche frammento: non contarci.
+    Regola pratica: se gli serve, daglielo. Una chat per ogni lavoro aiuta anche a ritrovare le cose.
+    Chat molto lunghe: il modello può perdere di vista le cose dette all'inizio. Meglio chiedere un riassunto e incollarlo in una chat nuova.
+  </aside>
+</section>
+
+<!-- ============ 7 · COSA PUO' FARE ============ -->
+<section class="slide" data-title="Cosa può fare in ufficio">
+  <p class="kicker">Strumenti e concetti di base</p>
+  <h2>Cosa può fare in ufficio</h2>
+  <div class="caps caps8">
+    <div class="cap"><svg class="ic"><use href="#i-pencil"/></svg><h3>Scrivere</h3><p>Email, lettere, avvisi, verbali</p></div>
+    <div class="cap"><svg class="ic"><use href="#i-refresh"/></svg><h3>Riscrivere</h3><p>Tono, lunghezza, stile</p></div>
+    <div class="cap"><svg class="ic"><use href="#i-check"/></svg><h3>Correggere</h3><p>Ortografia, grammatica, punteggiatura</p></div>
+    <div class="cap"><svg class="ic"><use href="#i-globe"/></svg><h3>Tradurre</h3><p>Email e documenti in altre lingue</p></div>
+    <div class="cap"><svg class="ic"><use href="#i-list"/></svg><h3>Riassumere</h3><p>Documenti lunghi, catene di email</p></div>
+    <div class="cap"><svg class="ic"><use href="#i-docq"/></svg><h3>Rispondere su un documento</h3><p>Domande su PDF, contratti, regolamenti</p></div>
+    <div class="cap"><svg class="ic"><use href="#i-image"/></svg><h3>Leggere file e immagini</h3><p>PDF, Excel, foto, scansioni</p></div>
+    <div class="cap"><svg class="ic"><use href="#i-chart"/></svg><h3>Analizzare dati</h3><p>Calcoli e grafici: esegue codice internamente</p></div>
+  </div>
+  <p class="bottom-line">Tutto si chiede <strong>scrivendo</strong>. Più la richiesta è chiara e completa, migliore è il risultato.</p>
+  <aside class="notes">
+    Panoramica: oggi proviamo scrittura, riscrittura e traduzione (esperimento 1), riassunto e domande su un documento (esperimento 2), dati e formule (esperimento 3).
+    Analisi dati: per ora basta dire che può fare calcoli eseguendo codice internamente; lo vediamo nel dettaglio prima dell'esperimento 3.
+    Sottolineare: non ci sono pulsanti speciali da imparare, si comanda tutto con il testo.
+  </aside>
+</section>
+
+<!-- ============ 10 · LIMITI ============ -->
+<section class="slide" data-title="Limiti da conoscere">
+  <p class="kicker">Strumenti e concetti di base</p>
+  <h2>Limiti da conoscere</h2>
+  <div class="limits">
+    <div class="lim-card">
+      <h3><svg class="ic"><use href="#i-alert"/></svg>Può sbagliare con sicurezza</h3>
+      <div class="fake-answer">
+        <span class="fa-who">Risposta</span>
+        <p>Il fatturato di marzo è stato di <mark class="wrong">184.500&nbsp;€</mark>, in crescita rispetto a febbraio.</p>
+        <span class="fa-true">Dato reale: 18.450 €</span>
+      </div>
+      <p>Il tono è sempre sicuro: <strong>non indica</strong> se la risposta è corretta.</p>
+    </div>
+    <div class="lim-card">
+      <h3><svg class="ic"><use href="#i-swap"/></svg>Ragiona in modo diverso da noi</h3>
+      <ul class="jag">
+        <li class="bad"><svg class="ic"><use href="#i-x"/></svg><span>Contare le lettere di una parola</span><em>può sbagliare</em></li>
+        <li class="bad"><svg class="ic"><use href="#i-x"/></svg><span>Fare a mente una somma lunga</span><em>può sbagliare</em></li>
+        <li class="good"><svg class="ic"><use href="#i-check"/></svg><span>Riassumere 30 pagine in pochi secondi</span><em>lo fa bene</em></li>
+        <li class="good"><svg class="ic"><use href="#i-check"/></svg><span>Riscrivere un testo in cinque toni diversi</span><em>lo fa bene</em></li>
+      </ul>
+    </div>
+  </div>
+  <p class="bottom-line">Non si può prevedere dove sbaglierà: <strong>per questo si verifica</strong>.</p>
+  <aside class="notes">
+    "Allucinazione": il modello produce un'informazione falsa ma plausibile, con lo stesso tono di quando ha ragione.
+    Non sbaglia "come un umano": cose per noi banali possono essere difficili per lui e viceversa. Lo vedremo durante i laboratori.
+  </aside>
+</section>
+
+<!-- ============ PRINCIPI ============ -->
+<section class="slide" data-title="Principi di una buona richiesta">
+  <p class="kicker">Scrivere le richieste</p>
+  <h2>Principi di una buona richiesta</h2>
+  <div class="princ">
+    <article class="pc">
+      <span class="num">1</span>
+      <h3>Scrivi come a una persona, non come a una ricerca su Google</h3>
+      <p>Dai il contesto, spiega, non dare nulla per scontato.</p>
+      <div class="ex-no"><b>Così no</b><span>«email ritardo cliente»</span></div>
+      <div class="ex-yes"><b>Così sì</b><span>«Devo scrivere un'email a un cliente per avvisarlo che il suo ordine arriverà in ritardo.»</span></div>
+    </article>
+    <article class="pc">
+      <span class="num">2</span>
+      <h3>Spiega con chiarezza e completezza quello che vuoi</h3>
+      <p>Il modello non legge nella tua mente e non sa tutto della tua azienda.</p>
+      <div class="ex-no"><b>Così no</b><span>«Scrivi la circolare sulle ferie.»</span></div>
+      <div class="ex-yes"><b>Così sì</b><span>«Scrivi una circolare per i dipendenti: le ferie estive vanno richieste entro il 31 marzo con il modulo F1.»</span></div>
+    </article>
+    <article class="pc">
+      <span class="num">3</span>
+      <h3>Con un file: prima fallo leggere, poi chiedi</h3>
+      <p>Prima chiedi di leggere e comprendere il documento, poi fai le domande.</p>
+      <div class="ex-no"><b>Così no</b><span>File allegato e subito «Entro quando le ferie?»</span></div>
+      <div class="ex-yes"><b>Così sì</b><span>«Ti allego il regolamento. Leggilo e comprendilo.» Poi la domanda.</span></div>
+    </article>
+  </div>
+  <aside class="notes">
+    Tre principi da tenere a mente in tutti gli esperimenti.
+    1) Una richiesta "stile Google" (parole chiave) dà risultati generici: si scrive come si parlerebbe a un collega.
+    2) Il modello non conosce la nostra azienda, i nostri clienti, le nostre regole: quello che non scriviamo, se lo inventa o lo ignora.
+    3) Con un documento: un primo messaggio per farlo leggere, poi le domande una alla volta. Le risposte sono più precise.
+  </aside>
+</section>
+
+<!-- ============ 10 · RICHIESTA ============ -->
+<section class="slide" data-title="Come scrivere una richiesta">
+  <p class="kicker">Scrivere le richieste</p>
+  <h2>Come scrivere una richiesta</h2>
+  <div class="rccf">
+    <div class="part p-role f">
+      <h3>Ruolo</h3><p class="qq">Chi deve essere?</p>
+      <p class="ex">«Lavori nella segreteria di Occhialeria Dolomiti Srl, un'azienda di occhiali.»</p>
+    </div>
+    <div class="part p-task f">
+      <h3>Compito</h3><p class="qq">Cosa deve fare?</p>
+      <p class="ex">«Scrivi un'email al cliente Ottica Bianchi.»</p>
+    </div>
+    <div class="part p-ctx f">
+      <h3>Contesto</h3><p class="qq">Cosa deve sapere?</p>
+      <p class="ex">«L'ordine n. 4521 arriverà con 10 giorni di ritardo per un problema del fornitore.»</p>
+    </div>
+    <div class="part p-fmt f">
+      <h3>Formato</h3><p class="qq">Come deve essere il risultato?</p>
+      <p class="ex">«Tono cortese e professionale, massimo 8 righe, con oggetto.»</p>
+    </div>
+  </div>
+  <div class="assembled f">
+    <span class="try-tag">Richiesta completa</span>
+    <div class="prompt"><span class="prompt-text"><span class="c-role">Lavori nella segreteria di Occhialeria Dolomiti Srl, un'azienda di occhiali.</span> <span class="c-task">Scrivi un'email al cliente Ottica Bianchi.</span> <span class="c-ctx">L'ordine n. 4521 arriverà con 10 giorni di ritardo per un problema del fornitore.</span> <span class="c-fmt">Tono cortese e professionale, massimo 8 righe, con oggetto.</span></span></div>
+  </div>
+  <aside class="notes">
+    Quattro domande da farsi prima di scrivere: chi deve essere, cosa deve fare, cosa deve sapere, come deve essere il risultato.
+    Non serve sempre usarle tutte, ma il contesto è quasi sempre quello che manca.
+    Le schede compaiono una alla volta (avanti), poi la richiesta completa.
+  </aside>
+</section>
+
+<!-- ============ 11 · CONFRONTO ============ -->
+<section class="slide" data-title="Esempio a confronto">
+  <p class="kicker">Scrivere le richieste</p>
+  <h2>Esempio a confronto</h2>
+  <div class="compare">
+    <div class="cmp cmp-bad f">
+      <p class="cmp-label">Richiesta vaga</p>
+      <div class="prompt small"><span class="prompt-text">Scrivi un'email per un ritardo.</span></div>
+      <div class="email">
+        <p><b>Oggetto:</b> Ritardo</p>
+        <p>Gentile <mark class="ph">[Nome]</mark>,</p>
+        <p>la informiamo che il suo <mark class="ph">[ordine/prodotto]</mark> subirà un ritardo. Ci scusiamo per l'inconveniente.</p>
+        <p>Cordiali saluti,<br><mark class="ph">[Il tuo nome]</mark></p>
+      </div>
+      <span class="verdict v-bad"><svg class="ic"><use href="#i-x"/></svg>Generica, da completare</span>
+    </div>
+    <div class="cmp cmp-good f">
+      <p class="cmp-label">Richiesta completa</p>
+      <div class="prompt small" data-copy="Lavori nella segreteria di Occhialeria Dolomiti Srl, un'azienda di occhiali. Scrivi un'email al cliente Ottica Bianchi. L'ordine n. 4521 arriverà con 10 giorni di ritardo per un problema del fornitore. Tono cortese e professionale, massimo 8 righe, con oggetto."><span class="prompt-text">Lavori nella segreteria di Occhialeria Dolomiti Srl… Scrivi un'email al cliente Ottica Bianchi… (ruolo, compito, contesto, formato)</span></div>
+      <div class="email">
+        <p><b>Oggetto:</b> Ordine n. 4521 – nuova data di consegna</p>
+        <p>Gentili Signori,</p>
+        <p>vi informiamo che l'ordine n. 4521 sarà consegnato con circa 10 giorni di ritardo, a causa di un problema presso il nostro fornitore. Ci scusiamo per il disagio e restiamo a disposizione.</p>
+        <p>Cordiali saluti,<br>Segreteria – Occhialeria Dolomiti Srl</p>
+      </div>
+      <span class="verdict v-good"><svg class="ic"><use href="#i-check"/></svg>Pronta da rileggere e inviare</span>
+    </div>
+  </div>
+  <aside class="notes">
+    Dimostrazione dal vivo: prima la richiesta vaga (risultato generico con segnaposto), poi quella completa.
+    Anche la versione buona va riletta: verificare numero d'ordine, nome del cliente, tempi.
+  </aside>
+</section>
+
+<!-- ============ 12 · MIGLIORARE ============ -->
+<section class="slide" data-title="Migliorare il risultato">
+  <p class="kicker">Scrivere le richieste</p>
+  <h2>Migliorare il risultato</h2>
+  <div class="tips">
+    <div class="tipc">
+      <h3><svg class="ic"><use href="#i-refresh"/></svg>Correggi nella stessa chat</h3>
+      <div class="prompt"><span class="prompt-text">Rendila più breve e togli l'ultimo paragrafo.</span></div>
+    </div>
+    <div class="tipc">
+      <h3><svg class="ic"><use href="#i-msg-q"/></svg>Fatti fare domande</h3>
+      <div class="prompt"><span class="prompt-text">Se ti mancano informazioni, chiedimele prima di scrivere.</span></div>
+    </div>
+    <div class="tipc">
+      <h3><svg class="ic"><use href="#i-doc"/></svg>Dai un esempio</h3>
+      <div class="prompt"><span class="prompt-text">Usa lo stesso stile di questa email: …</span></div>
+    </div>
+    <div class="tipc">
+      <h3><svg class="ic"><use href="#i-list"/></svg>Indica il formato</h3>
+      <div class="prompt"><span class="prompt-text">Rispondimi con una tabella con tre colonne: attività, responsabile e scadenza.</span></div>
+    </div>
+  </div>
+  <p class="bottom-line">È una conversazione: <strong>il primo risultato è una bozza</strong>, si migliora chiedendo.</p>
+  <aside class="notes">
+    Non serve scrivere la richiesta perfetta al primo colpo: si corregge dialogando.
+    "Fatti fare domande" è molto utile quando non sappiamo bene cosa scrivere nel contesto.
+  </aside>
+</section>
+
+<!-- ============ PRATICA 1 · SCRIVERE ============ -->
+<section class="slide s-lab" data-title="Esperimento 1 · Scrivere">
+  <p class="kicker lab-kicker"><svg class="ic"><use href="#i-users"/></svg>Pratica · in coppia</p>
+  <h2>Esperimento 1 · Scrivere</h2>
+  <div class="lab-grid">
+    <div class="lstep">
+      <h3><span>1</span>Prima vaga, poi completa</h3>
+      <div class="prompt small"><span class="prompt-text">Scrivi un'email per un ritardo.</span></div>
+      <div class="prompt small" data-copy="Lavori nella segreteria di Occhialeria Dolomiti Srl, un'azienda di occhiali. Scrivi un'email al cliente Ottica Bianchi. L'ordine n. 4521 arriverà con 10 giorni di ritardo per un problema del fornitore. Tono cortese e professionale, massimo 8 righe, con oggetto."><span class="prompt-text">Lavori nella segreteria di Occhialeria Dolomiti Srl… (richiesta completa)</span></div>
+    </div>
+    <div class="lstep">
+      <h3><span>2</span>Cambia il tono, nella stessa chat</h3>
+      <div class="chips-row">
+        <div class="prompt small"><span class="prompt-text">Riscrivila con un tono più formale.</span></div>
+        <div class="prompt small"><span class="prompt-text">Ora rendila più cordiale.</span></div>
+        <div class="prompt small"><span class="prompt-text">Riducila a tre righe.</span></div>
+        <div class="prompt small"><span class="prompt-text">Traducila in inglese.</span></div>
+      </div>
+    </div>
+    <div class="lstep">
+      <h3><span>3</span>Stessa notizia, forme diverse</h3>
+      <div class="prompt small"><span class="prompt-text">L'ufficio sarà chiuso venerdì 23 ottobre per inventario. Scrivi tre testi: un avviso da appendere in bacheca, un messaggio breve per i clienti e un'email ai fornitori.</span></div>
+    </div>
+    <div class="lstep">
+      <h3><span>4</span>Rispondi a un reclamo</h3>
+      <div class="prompt small"><span class="prompt-text">Lavori nella segreteria di Occhialeria Dolomiti Srl. Rispondi in modo cortese a questo reclamo, senza ammettere colpe che non abbiamo verificato: "Buongiorno, è la seconda volta che ci arrivano montature graffiate. Siamo molto delusi e stiamo valutando di cambiare fornitore. Ottica Bianchi"</span></div>
+    </div>
+  </div>
+  <div class="lab-extra">
+    <span class="extra-tag">Se avanza tempo · in un'altra chat</span>
+    <div class="prompt small"><span class="prompt-text">Devo segnalare in modo gentile un ritardo a un cliente. Prima di scrivere, fammi le domande che ti servono per farlo al meglio.</span></div>
+  </div>
+  <aside class="notes">
+    In coppia: se uno finisce i messaggi gratuiti, si usa l'altro PC.
+    1) Confrontare il risultato vago (segnaposto come [Nome]) con quello completo.
+    2) Si corregge dialogando, senza ripartire da zero.
+    3) Stesso contenuto, forme diverse: avviso, messaggio breve, email.
+    4) Osservare se inventa dettagli: sconti, date di consegna, promesse non richieste.
+    Extra: l'IA fa le domande, gli allievi rispondono, poi scrive l'email.
+  </aside>
+</section>
+
+<!-- ============ IMPARATO 1 ============ -->
+<section class="slide s-learn" data-title="Cosa abbiamo imparato · Scrivere">
+  <p class="kicker">Cosa abbiamo imparato</p>
+  <h2>Esperimento 1 · Scrivere</h2>
+  <div class="learn">
+    <div class="lcol lcol-bad">
+      <p class="lhead"><svg class="ic"><use href="#i-x"/></svg>Non va bene</p>
+      <ul>
+        <li>«Scrivi un'email per un ritardo»: risultato generico, da completare</li>
+        <li>Aprire una nuova chat senza dare il contesto</li>
+        <li>Inviare senza rileggere: può aggiungere dettagli inventati</li>
+      </ul>
+    </div>
+    <div class="lcol lcol-good f">
+      <p class="lhead"><svg class="ic"><use href="#i-check"/></svg>Va bene</p>
+      <ul>
+        <li>Ruolo, compito, contesto e formato</li>
+        <li>Correggere nella stessa chat: «più breve», «più formale»</li>
+        <li>Farsi fare le domande prima di scrivere</li>
+      </ul>
+    </div>
+  </div>
+  <p class="learn-rule f"><strong>Regola:</strong> più contesto dai, meno devi correggere. E rileggi sempre prima di inviare.</p>
+  <aside class="notes">
+    Prima si mostra solo la colonna "Non va bene" e si chiede alla classe: cosa non ha funzionato? Poi avanti: "Va bene" e la regola.
+  </aside>
+</section>
+
+<!-- ============ PRATICA 2 · DOCUMENTO ============ -->
+<section class="slide s-lab" data-title="Esperimento 2 · Comprendere un documento">
+  <p class="kicker lab-kicker"><svg class="ic"><use href="#i-users"/></svg>Pratica · in coppia</p>
+  <h2>Esperimento 2 · Comprendere un documento</h2>
+  <a class="dl" href="../materiali/regolamento_segreteria_occhialeria_dolomiti.pdf" download target="_blank" rel="noopener"><svg class="ic"><use href="#i-dl"/></svg><span><strong>Scarica il PDF</strong> · Regolamento interno della segreteria (9 pagine) · allegalo con <kbd>+</kbd></span></a>
+  <div class="lab-grid">
+    <div class="lstep">
+      <h3><span>1</span>Fallo leggere, poi riassumi</h3>
+      <div class="prompt small"><span class="prompt-text">Ti allego il regolamento interno della segreteria. Leggilo e comprendilo.</span></div>
+      <div class="prompt small"><span class="prompt-text">Fammi un riassunto dettagliato ma conciso di questo documento.</span></div>
+    </div>
+    <div class="lstep">
+      <h3><span>2</span>Organizza le informazioni</h3>
+      <div class="prompt small"><span class="prompt-text">Crea una tabella con le cose da fare, chi le deve fare ed entro quando.</span></div>
+    </div>
+    <div class="lstep">
+      <h3><span>3</span>Chiedi e verifica nel PDF</h3>
+      <div class="prompt small"><span class="prompt-text">Entro quanti giorni bisogna rispondere a un reclamo? Dimmi in quale punto del documento lo dice e riporta la frase esatta.</span></div>
+    </div>
+    <div class="lstep">
+      <h3><span>4</span>Domande difficili</h3>
+      <div class="prompt small"><span class="prompt-text">Quanti giorni al mese di smart working sono previsti per la segreteria?</span></div>
+      <div class="prompt small"><span class="prompt-text">Qual è il rimborso previsto per chi va in trasferta con i mezzi pubblici?</span></div>
+    </div>
+  </div>
+  <div class="lab-extra">
+    <span class="extra-tag">Se avanza tempo · nella stessa chat</span>
+    <div class="prompt small"><span class="prompt-text">Spiega questo regolamento a un collega appena assunto, in tre punti semplici.</span></div>
+  </div>
+  <aside class="notes">
+    Risposte corrette (dal regolamento): reclami → risposta entro 3 giorni lavorativi (capitolo Reclami); ferie estive → richiesta entro il 31 marzo.
+    Domande difficili: lo smart working NON è citato nel regolamento; per le trasferte è previsto solo il rimborso dell'auto propria (0,35 €/km), i mezzi pubblici NON sono citati.
+    Osservare: risponde "non è indicato" oppure inventa? Se non ci casca: "ha fatto bene, ma come facevate a saperlo senza controllare?".
+    Primo messaggio: solo lettura e comprensione, poi le richieste.
+    Il riassunto "dettagliato ma conciso" può includere o no il termine dei 3 giorni per i reclami: chiedere chi l'ha trovato, ed è l'occasione per chiedere «In quale punto lo dice?».
+  </aside>
+</section>
+
+<!-- ============ IMPARATO 2 ============ -->
+<section class="slide s-learn" data-title="Cosa abbiamo imparato · Documento">
+  <p class="kicker">Cosa abbiamo imparato</p>
+  <h2>Esperimento 2 · Comprendere un documento</h2>
+  <div class="learn">
+    <div class="lcol lcol-bad">
+      <p class="lhead"><svg class="ic"><use href="#i-x"/></svg>Non va bene</p>
+      <ul>
+        <li>Fidarsi interamente del riassunto: può tralasciare dettagli importanti</li>
+        <li>Domande che danno per scontata un'informazione</li>
+        <li>Usare una risposta senza cercarla nel testo</li>
+      </ul>
+    </div>
+    <div class="lcol lcol-good f">
+      <p class="lhead"><svg class="ic"><use href="#i-check"/></svg>Va bene</p>
+      <ul>
+        <li>Prima fargli leggere il documento, poi fare le domande</li>
+        <li>«In quale punto lo dice? Riporta la frase esatta.»</li>
+        <li>«È indicato nel documento? Dove?»</li>
+        <li>Controllare la frase nel PDF</li>
+      </ul>
+    </div>
+  </div>
+  <p class="learn-rule f"><strong>Regola:</strong> una risposta su un documento si verifica nel documento.</p>
+  <aside class="notes">
+    Prima solo "Non va bene": chi ha ricevuto risposte inventate sullo smart working o sui mezzi pubblici? Poi "Va bene" e la regola.
+  </aside>
+</section>
+
+<!-- ============ 8 · CODICE ============ -->
+<section class="slide" data-title="Calcoli e dati: l'uso del codice">
+  <p class="kicker">Dati e formule</p>
+  <h2>Calcoli e dati: l'uso del codice</h2>
+  <div class="flow">
+    <div class="fstep">
+      <p class="fnum">1 · Richiesta</p>
+      <div class="fbox"><p class="q q-sm">«Calcola il totale delle vendite per mese, poi crea un grafico. Usa il codice per i calcoli.»</p></div>
+    </div>
+    <i class="farrow" aria-hidden="true"></i>
+    <div class="fstep">
+      <p class="fnum">2 · Scrive un programma</p>
+      <div class="fbox code"><pre>dati = leggi("vendite.xlsx")
+totali = somma_per_mese(dati)
+grafico(totali)</pre><span class="code-note">esempio semplificato</span></div>
+    </div>
+    <i class="farrow" aria-hidden="true"></i>
+    <div class="fstep">
+      <p class="fnum">3 · Lo esegue</p>
+      <div class="fbox center"><svg class="ic big spin"><use href="#i-gear"/></svg><p>Calcolo esatto</p></div>
+    </div>
+    <i class="farrow" aria-hidden="true"></i>
+    <div class="fstep">
+      <p class="fnum">4 · Risultato</p>
+      <div class="fbox center">
+        <svg class="minichart" viewBox="0 0 150 90" aria-label="Grafico a barre di esempio">
+          <line x1="4" y1="84" x2="146" y2="84" stroke="#C9D5E0" stroke-width="2"/>
+          <rect x="10" y="50" width="16" height="34" rx="2" fill="#0E9F8E" opacity=".55"/>
+          <rect x="33" y="36" width="16" height="48" rx="2" fill="#0E9F8E" opacity=".7"/>
+          <rect x="56" y="44" width="16" height="40" rx="2" fill="#0E9F8E" opacity=".6"/>
+          <rect x="79" y="22" width="16" height="62" rx="2" fill="#0E9F8E"/>
+          <rect x="102" y="30" width="16" height="54" rx="2" fill="#0E9F8E" opacity=".85"/>
+          <rect x="125" y="12" width="16" height="72" rx="2" fill="#0F2A43"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="code-msgs">
+    <p class="key-msg">Con il codice il risultato è <strong>calcolato</strong>, non stimato.</p>
+    <p class="warn"><svg class="ic"><use href="#i-alert"/></svg><span>Se il compito è rischioso, controlla comunque che abbia letto i dati giusti e che il codice sia corretto.</span></p>
+  </div>
+  <aside class="notes">
+    Senza codice il modello "stima" il risultato come se facesse il calcolo a mente: con numeri lunghi sbaglia facilmente.
+    Con il codice esegue un vero calcolo. In molti strumenti lo fa da solo quando carichi un Excel, ma conviene chiederlo esplicitamente.
+    Il codice non sbaglia i conti, ma può leggere la colonna sbagliata: controllo a campione.
+  </aside>
+</section>
+
+<!-- ============ 9 · FORMULA ============ -->
+<section class="slide" data-title="Generare una formula">
+  <p class="kicker">Dati e formule</p>
+  <h2>Generare una formula</h2>
+  <div class="modes">
+    <div class="mode">
+      <p class="mode-label"><span>1</span>Descrivi il foglio</p>
+      <div class="prompt small"><span class="prompt-text">Uso Excel in italiano. Nella colonna B ho i nomi dei clienti e nella colonna D gli importi, dalla riga 2 alla 200. Scrivimi la formula per calcolare il totale di "Ottica Bianchi" e spiegami come funziona.</span></div>
+    </div>
+    <div class="mode">
+      <p class="mode-label"><span>2</span>Allega il file (in una nuova chat)</p>
+      <div class="prompt small"><span class="prompt-text">Ti allego il file delle vendite. Leggilo e descrivimi cosa contiene.</span></div>
+      <div class="prompt small"><span class="prompt-text">Uso Excel in italiano. Scrivimi la formula per calcolare il totale di "Ottica Bianchi" e spiegami come funziona.</span></div>
+      <p class="mode-note">Legge da solo colonne e intestazioni: la formula è su misura. Solo file senza dati personali.</p>
+    </div>
+  </div>
+  <div class="formula-band">
+    <p class="formula"><span class="fx">=SOMMA.SE(</span><span class="fa">B2:B200</span><span class="fx">; </span><span class="fb">"Ottica Bianchi"</span><span class="fx">; </span><span class="fc">D2:D200</span><span class="fx">)</span></p>
+    <div class="formula-legend">
+      <span><i class="lg-a"></i>dove cercare</span>
+      <span><i class="lg-b"></i>cosa cercare</span>
+      <span><i class="lg-c"></i>cosa sommare</span>
+    </div>
+  </div>
+  <div class="formula-notes fn-single">
+    <p class="warn"><svg class="ic"><use href="#i-alert"/></svg><span>Indica <strong>lingua e programma</strong>: «Excel in italiano», «Google Fogli», «LibreOffice Calc». Altrimenti può rispondere con SUMIF e le virgole, e la formula dà errore.</span></p>
+  </div>
+  <aside class="notes">
+    Dimostrazione dal vivo con il file materiali/vendite_occhialeria_dolomiti.xlsx (foglio Vendite: A Data, B Cliente, C Prodotto, D Importo, righe 2–200).
+    Modo 1: si descrive il foglio. Modo 2: si allega il file, prima lo si fa leggere, poi si chiede la formula.
+    Totale corretto di Ottica Bianchi: 83.227,81 € (foglio Soluzioni).
+    Una formula si può leggere e verificare: come il codice, fa un calcolo esatto. Il rischio è che punti alle celle sbagliate: per questo si prova.
+    Se si dimentica "Excel in italiano", spesso arriva =SUMIF(B2:B200,"Ottica Bianchi",D2:D200): in Excel italiano dà errore.
+  </aside>
+</section>
+
+<!-- ============ PRATICA 3 · DATI ============ -->
+<section class="slide s-lab" data-title="Esperimento 3 · Dati e formule">
+  <p class="kicker lab-kicker"><svg class="ic"><use href="#i-users"/></svg>Pratica · in coppia</p>
+  <h2>Esperimento 3 · Dati e formule</h2>
+  <a class="dl" href="../materiali/vendite_occhialeria_dolomiti.xlsx" download target="_blank" rel="noopener"><svg class="ic"><use href="#i-dl"/></svg><span><strong>Scarica il file Excel</strong> · Vendite di Occhialeria Dolomiti · allegalo con <kbd>+</kbd></span></a>
+  <div class="lab-grid">
+    <div class="lstep">
+      <h3><span>1</span>Fallo leggere</h3>
+      <div class="prompt small"><span class="prompt-text">Ti allego il file delle vendite. Leggilo e descrivimi cosa contiene.</span></div>
+    </div>
+    <div class="lstep">
+      <h3><span>2</span>Fatti dare la formula</h3>
+      <div class="prompt small"><span class="prompt-text">Uso Excel in italiano. Scrivimi la formula per calcolare il totale di "Ottica Bianchi" e spiegami come funziona.</span></div>
+    </div>
+    <div class="lstep">
+      <h3><span>3</span>Provala nel foglio</h3>
+      <p class="lstep-text">Incolla la formula in una cella vuota del foglio <em>Vendite</em> e confronta il risultato con il foglio <em>Soluzioni</em>.</p>
+    </div>
+    <div class="lstep">
+      <h3><span>4</span>Senza file? Descrivi il foglio</h3>
+      <div class="prompt small"><span class="prompt-text">Uso Excel in italiano. Nella colonna B ho i nomi dei clienti e nella colonna D gli importi, dalla riga 2 alla 200. Scrivimi la formula per calcolare il totale di "Ottica Bianchi" e spiegami come funziona.</span></div>
+    </div>
+  </div>
+  <div class="lab-extra">
+    <span class="extra-tag">Se avanza tempo · nella stessa chat</span>
+    <div class="prompt small"><span class="prompt-text">Calcola il totale delle vendite per mese, poi crea un grafico. Usa il codice per i calcoli.</span></div>
+  </div>
+  <aside class="notes">
+    Totale corretto di Ottica Bianchi: 83.227,81 € (58 righe). Totale generale: 239.392,08 €.
+    Formula attesa: =SOMMA.SE(B2:B200; "Ottica Bianchi"; D2:D200).
+    Il passo 4 è per chi non riesce a caricare il file (limiti della versione gratuita o niente account).
+    Grafico: non tutti gli strumenti gratuiti lo fanno; in coppia si prova sull'altro PC.
+  </aside>
+</section>
+
+<!-- ============ IMPARATO 3 ============ -->
+<section class="slide s-learn" data-title="Cosa abbiamo imparato · Dati">
+  <p class="kicker">Cosa abbiamo imparato</p>
+  <h2>Esperimento 3 · Dati e formule</h2>
+  <div class="learn">
+    <div class="lcol lcol-bad">
+      <p class="lhead"><svg class="ic"><use href="#i-x"/></svg>Non va bene</p>
+      <ul>
+        <li>Copiare un totale dalla chat senza controllarlo</li>
+        <li>Non indicare lingua e programma: la formula può dare errore</li>
+      </ul>
+    </div>
+    <div class="lcol lcol-good f">
+      <p class="lhead"><svg class="ic"><use href="#i-check"/></svg>Va bene</p>
+      <ul>
+        <li>Farsi dare la formula e provarla nel foglio</li>
+        <li>«Excel in italiano», «Google Fogli», «LibreOffice Calc»</li>
+        <li>Allegare il file per avere una formula su misura</li>
+      </ul>
+    </div>
+  </div>
+  <p class="learn-rule f"><strong>Regola:</strong> una formula che sai leggere vale più di un numero scritto in chat.</p>
+  <aside class="notes">
+    Prima solo "Non va bene", poi "Va bene" e la regola. Collegare alla sicurezza: nei calcoli l'errore è raro ma possibile, e una formula si può verificare.
+  </aside>
+</section>
+
+<!-- ============ 13 · SEZIONE SICUREZZA ============ -->
+<section class="slide s-section" data-title="Sicurezza e uso responsabile">
+  <p class="kicker">Sezione</p>
+  <h2>Sicurezza e uso responsabile</h2>
+  <p class="section-q">Cosa è successo durante gli esperimenti?</p>
+  <div class="recap recap2">
+    <div><svg class="ic"><use href="#i-doc"/></svg><p>Il riassunto di un documento <strong>mai caricato</strong></p></div>
+    <div><svg class="ic"><use href="#i-search"/></svg><p>La domanda su un'informazione <strong>che non c'era</strong></p></div>
+  </div>
+  <p class="section-foot">Da questi casi ricaviamo alcune regole.</p>
+  <aside class="notes">
+    Chiedere alla classe di raccontare cosa è andato storto. Le regole nascono dai loro esempi.
+  </aside>
+</section>
+
+<!-- ============ 14 · COMPORTAMENTI 1 ============ -->
+<section class="slide" data-title="Comportamenti da conoscere (1/2)">
+  <p class="kicker">Sicurezza e uso responsabile</p>
+  <h2>Comportamenti da conoscere <span class="pg">1/2</span></h2>
+  <div class="behaviours">
+    <article class="beh">
+      <span class="num">1</span>
+      <h3>Allucinazioni: inventa informazioni con sicurezza</h3>
+      <p>Il modello non sa di sbagliare: il tono è sicuro anche quando inventa.</p>
+      <div class="try col">
+        <span class="try-tag">Esempio</span>
+        <p class="ex-q">«Chi lavora in segreteria ha diritto a giorni di ferie in più?»</p>
+        <p class="ex-a ex-diff"><b>IA</b><span>Sì, la <mark>legge n. 1242 del 2019</mark> prevede 3 giorni di ferie aggiuntivi all'anno.</span></p>
+        <span class="try-note hallu"><svg class="ic"><use href="#i-x"/></svg>Legge inventata</span>
+      </div>
+    </article>
+    <article class="beh">
+      <span class="num">2</span>
+      <h3>Può sbagliare cose semplici</h3>
+      <p>Ciò che è facile per noi non è facile per lui.</p>
+      <div class="try col">
+        <span class="try-tag">Prova</span>
+        <div class="prompt"><span class="prompt-text">Quante lettere R ci sono nella parola "ferrarre"?</span></div>
+        <span class="try-note">risposta corretta: 4</span>
+      </div>
+    </article>
+    <article class="beh">
+      <span class="num">3</span>
+      <h3>Nei calcoli è imprevedibile</h3>
+      <p>L'errore è raro, ma possibile, soprattutto con i modelli gratuiti. E uno zero in più in una fattura è un danno serio.</p>
+      <div class="try col">
+        <span class="try-tag">Quindi</span>
+        <p class="try-text"><svg class="ic"><use href="#i-sigma"/></svg><span>Controlla sempre, oppure fatti dare <strong>una formula</strong> o chiedi di usare <strong>il codice</strong>.</span></p>
+      </div>
+    </article>
+  </div>
+  <aside class="notes">
+    1) Esempio di allucinazione: la legge citata non esiste. Il modello non "sa di non sapere": produce una risposta plausibile, con lo stesso tono di quando ha ragione. Per leggi, norme e riferimenti: verificare sempre sulla fonte.
+    2) "ferrarre" ha 4 R. Il modello legge il testo a pezzi, non lettera per lettera: può sbagliare.
+    3) Con i modelli recenti l'errore di calcolo è raro, ma non si può escludere: probabilità bassa, danno potenzialmente alto.
+    Prova facoltativa, se avanza tempo (presentarla come "vediamo cosa succede"): «Somma questi importi senza usare il codice, rispondi solo con il totale: 1.284,50 – 937,20 – 2.410,75 – 88,90 – 1.735,40 – 642,15 – 3.119,80 – 504,35 – 1.376,60 – 259,45». Totale corretto: 12.359,10.
+    Le prove possono non fallire ogni volta: il punto è che non si può sapere in anticipo.
+  </aside>
+</section>
+
+<!-- ============ 15 · COMPORTAMENTI 2 ============ -->
+<section class="slide" data-title="Comportamenti da conoscere (2/2)">
+  <p class="kicker">Sicurezza e uso responsabile</p>
+  <h2>Comportamenti da conoscere <span class="pg">2/2</span></h2>
+  <div class="behaviours">
+    <article class="beh">
+      <span class="num">4</span>
+      <h3>Alla stessa domanda risponde in modo diverso</h3>
+      <p>Ogni risposta è nuova: cambiano le parole e a volte anche il contenuto.</p>
+      <div class="try col">
+        <span class="try-tag">Esempio</span>
+        <p class="ex-q">«Riassumi in una riga: la riunione è spostata a giovedì alle 15.»</p>
+        <p class="ex-a"><b>A</b><span>Riunione rinviata a giovedì, ore 15.</span></p>
+        <p class="ex-a ex-diff"><b>B</b><span>La riunione si terrà giovedì <mark>pomeriggio</mark>.</span></p>
+      </div>
+    </article>
+    <article class="beh">
+      <span class="num">5</span>
+      <h3>Tende a darti ragione</h3>
+      <p>Se insisti, può cambiare idea anche quando aveva ragione.</p>
+      <div class="try col">
+        <span class="try-tag">Prova</span>
+        <div class="prompt"><span class="prompt-text">Sei sicuro? Secondo me è sbagliato.</span></div>
+        <span class="try-note">dopo una risposta corretta</span>
+      </div>
+    </article>
+    <article class="beh">
+      <span class="num">6</span>
+      <h3>Ciò che carichi esce dal tuo computer</h3>
+      <p>Testi e file vengono inviati ai server del fornitore del servizio.</p>
+      <div class="try col">
+        <span class="try-tag">Quindi</span>
+        <p class="try-text"><svg class="ic"><use href="#i-lock"/></svg><span>Attenzione ai dati personali e riservati.</span></p>
+      </div>
+    </article>
+  </div>
+  <aside class="notes">
+    4) Esempio sulla slide: la risposta B perde l'orario. Il modello non dà sempre la stessa risposta, quindi non basta che "una volta abbia funzionato". Se c'è tempo, mostrarlo rigenerando una risposta.
+    5) Il più controintuitivo: il modello tende ad assecondare. Non usare "sei sicuro?" come verifica: verificare sulla fonte.
+    6) Introduce la slide sulla privacy.
+  </aside>
+</section>
+
+<!-- ============ ERRORE UMANO ============ -->
+<section class="slide" data-title="Spesso l'errore è umano">
+  <p class="kicker">Sicurezza e uso responsabile</p>
+  <h2>Spesso l'errore è umano</h2>
+  <div class="human">
+    <article class="hm">
+      <p class="hm-bad"><svg class="ic"><use href="#i-x"/></svg><span>Pretendere che il modello intuisca quello che pensi, senza spiegarlo</span></p>
+      <p class="hm-good"><svg class="ic"><use href="#i-check"/></svg><span>Spiega cosa vuoi, come a un collega appena arrivato</span></p>
+    </article>
+    <article class="hm">
+      <p class="hm-bad"><svg class="ic"><use href="#i-x"/></svg><span>Dimenticare di caricare il file</span></p>
+      <p class="hm-good"><svg class="ic"><use href="#i-check"/></svg><span>Prima di inviare, controlla che l'allegato ci sia</span></p>
+    </article>
+    <article class="hm">
+      <p class="hm-bad"><svg class="ic"><use href="#i-x"/></svg><span>Chiedere «le vendite» di un Excel in cui nessuna colonna le rappresenta</span></p>
+      <p class="hm-good"><svg class="ic"><use href="#i-check"/></svg><span>Assicurati che il dato si possa ricavare: serve una colonna riconducibile alle vendite</span></p>
+    </article>
+    <article class="hm">
+      <p class="hm-bad"><svg class="ic"><use href="#i-x"/></svg><span>Pensare che sappia cosa hai scritto in un'altra chat</span></p>
+      <p class="hm-good"><svg class="ic"><use href="#i-check"/></svg><span>Ogni chat parte da zero: ridagli le informazioni che servono</span></p>
+    </article>
+  </div>
+  <p class="bottom-line">Prima di dire che l'IA ha sbagliato, chiediti: <strong>le ho dato tutto quello che le serviva?</strong></p>
+  <aside class="notes">
+    Molti errori non sono del modello ma di come lo usiamo.
+    Collegare agli esperimenti: chi ha dimenticato di allegare il file? chi ha avuto risposte strane perché la richiesta era troppo corta?
+    Esempio Excel: non serve che una colonna si chiami esattamente "Vendite" (va bene anche "Importo"), ma il dato deve potersi ricavare dal file. Se non c'è nulla di riconducibile, il modello tira a indovinare.
+  </aside>
+</section>
+
+<!-- ============ 16 · SEMAFORO ============ -->
+<section class="slide" data-title="Quando fidarsi">
+  <p class="kicker">Sicurezza e uso responsabile</p>
+  <h2>Quando fidarsi</h2>
+  <div class="traffic">
+    <div class="tl-housing" aria-hidden="true"></div>
+    <div class="tl-row r-green">
+      <span class="light"></span>
+      <div class="tl-text">
+        <h3>Puoi usarlo, rileggendo</h3>
+        <p>Bozze, idee, cambi di tono, correzione della forma</p>
+      </div>
+    </div>
+    <div class="tl-row r-amber">
+      <span class="light"></span>
+      <div class="tl-text">
+        <h3>Controlla</h3>
+        <p>Riassunti e traduzioni. Chiedi: <q>In quale punto del documento lo dice?</q></p>
+      </div>
+    </div>
+    <div class="tl-row r-red">
+      <span class="light"></span>
+      <div class="tl-text">
+        <h3>Verifica sempre</h3>
+        <p>Importi, date, nomi, riferimenti di legge, calcoli</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    Più l'errore costa, più serve verificare. Un tono sbagliato si corregge rileggendo; un importo sbagliato in una fattura è un problema serio.
+    "In quale punto lo dice?" è il controllo più semplice per riassunti e risposte su documenti: poi si cerca la frase nel testo.
+  </aside>
+</section>
+
+<!-- ============ 19 · RISCHIO ============ -->
+<section class="slide" data-title="Quanto verificare">
+  <p class="kicker">Sicurezza e uso responsabile</p>
+  <h2>Quanto verificare</h2>
+  <p class="risk-intro">Dipende da <strong>cosa succede se è sbagliato</strong>.</p>
+  <div class="risk">
+    <div class="risk-head"><span></span><span>Se sbaglia…</span><span>Esempio</span><span>Cosa fare</span></div>
+    <div class="risk-row rk-green"><span class="rdot"></span><strong>Nessun danno</strong><span>Email a un collega, bozza, idee</span><span>Rileggi</span></div>
+    <div class="risk-row rk-amber"><span class="rdot"></span><strong>Disagi, figuracce</strong><span>Comunicazione a un cliente, riassunto di un documento</span><span>Controlla i punti chiave</span></div>
+    <div class="risk-row rk-red"><span class="rdot"></span><strong>Danni seri</strong><span>Importi in un Excel per un cliente, scadenze, contratti</span><span>Controlla accuratamente tutto. A volte conviene farlo direttamente a mano</span></div>
+  </div>
+  <div class="risk-foot">
+    <p class="risk-ex"><svg class="ic"><use href="#i-pill"/></svg><span>Un medico non può decidere la dose di un farmaco basandosi sull'IA, anche se è giusta nel 99% dei casi.</span></p>
+    <p class="risk-key">Errore raro, ma danno alto = <strong>rischio alto</strong></p>
+  </div>
+  <aside class="notes">
+    Il semaforo precedente guarda il tipo di contenuto; questo guarda le conseguenze dell'errore.
+    Probabilità bassa non vuol dire rischio basso: uno zero in più in un importo per un cliente è raro, ma costa caro.
+    Esempio estremo del medico: l'IA può aiutare, ma non può essere l'unica fonte quando l'errore è grave.
+  </aside>
+</section>
+
+<!-- ============ 20 · PRIVACY ============ -->
+<section class="slide" data-title="Privacy e dati personali">
+  <p class="kicker">Sicurezza e uso responsabile</p>
+  <h2>Privacy e dati personali</h2>
+  <div class="privacy">
+    <div class="pv-left">
+      <div class="box box-red">
+        <h3><svg class="ic"><use href="#i-x"/></svg>Non caricare</h3>
+        <ul>
+          <li>Dati personali di clienti o colleghi: codice fiscale, IBAN, dati sanitari</li>
+          <li>Documenti riservati dell'azienda</li>
+          <li>Password e credenziali</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3><svg class="ic"><use href="#i-swap"/></svg>Se serve un documento reale</h3>
+        <p>Sostituisci i dati con dati di fantasia:</p>
+        <p class="anon"><span class="real">Mario Rossi, via Roma 12</span><span class="to">→</span><span class="fake">Cliente A, indirizzo A</span></p>
+      </div>
+    </div>
+    <div class="pv-right">
+      <h3 class="pv-h"><svg class="ic"><use href="#i-lock"/></svg>Disattiva l'uso delle chat per l'addestramento</h3>
+      <table class="tbl compact">
+        <thead><tr><th>Strumento</th><th>Dove</th></tr></thead>
+        <tbody>
+          <tr><th>ChatGPT</th><td>Impostazioni → Controlli dati → «Migliora il modello per tutti»</td></tr>
+          <tr><th>Gemini</th><td>Impostazioni → Attività → disattiva il salvataggio</td></tr>
+          <tr><th>Claude</th><td>Impostazioni → Privacy → «Aiuta a migliorare Claude»</td></tr>
+        </tbody>
+      </table>
+      <p class="fine">I nomi delle voci possono cambiare con gli aggiornamenti.</p>
+    </div>
+  </div>
+  <p class="bottom-line">In azienda segui sempre <strong>le regole interne</strong> sull'uso dell'intelligenza artificiale.</p>
+  <aside class="notes">
+    Mostrare dal vivo dove si trovano le impostazioni (verificare i percorsi prima della lezione).
+    In azienda: seguire sempre le regole interne sull'uso dell'IA. Le versioni aziendali e i modelli aperti installati in casa riducono il rischio.
+  </aside>
+</section>
+
+<!-- ============ 18 · REGOLE ============ -->
+<section class="slide" data-title="Regole pratiche">
+  <p class="kicker">Sicurezza e uso responsabile</p>
+  <h2>Regole pratiche</h2>
+  <div class="rules-wrap">
+    <ol class="rules">
+      <li><span>1</span><p>Un testo convincente <strong>non è per forza corretto</strong>.</p></li>
+      <li><span>2</span><p>Il modello vede solo la chat: <strong>dagli ciò che serve</strong>.</p></li>
+      <li><span>3</span><p>Per i numeri <strong>controlla sempre</strong>, oppure basati su una formula che sai leggere.</p></li>
+      <li><span>4</span><p>Chiedi <strong>in quale punto del documento</strong> si trova l'informazione.</p></li>
+      <li><span>5</span><p>Più è alto il danno possibile, <strong>più accurata la verifica</strong>.</p></li>
+      <li><span>6</span><p><strong>Non caricare</strong> dati personali o riservati.</p></li>
+      <li><span>7</span><p>Il documento lo firmi tu: <strong>la responsabilità resta tua</strong>.</p></li>
+    </ol>
+    <div class="thanks">
+      <p class="t-big">Grazie</p>
+      <p class="t-name">Giacomo Bocchese</p>
+      <p class="t-sub">AI per la gestione documentale</p>
+    </div>
+  </div>
+  <aside class="notes">
+    Riepilogo delle regole, poi si passa al quiz di autovalutazione (non valutato).
+  </aside>
+</section>
+
+</main>
+
+<!-- Interfaccia -->
+<div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+<nav class="controls" aria-label="Navigazione slide">
+  <button type="button" id="btn-prev" aria-label="Slide precedente">&#8249;</button>
+  <span id="counter">1 / 28</span>
+  <button type="button" id="btn-next" aria-label="Slide successiva">&#8250;</button>
+  <button type="button" id="btn-help" aria-label="Comandi da tastiera">?</button>
+</nav>
+<div class="notes-panel" id="notes-panel" hidden></div>
+<div class="help-panel" id="help-panel" hidden>
+  <h3>Comandi</h3>
+  <dl>
+    <dt>→ ↓ Spazio PagGiù</dt><dd>Avanti</dd>
+    <dt>← ↑ PagSu</dt><dd>Indietro</dd>
+    <dt>Home / Fine</dt><dd>Prima / ultima slide</dd>
+    <dt>F</dt><dd>Schermo intero</dd>
+    <dt>O</dt><dd>Panoramica</dd>
+    <dt>N</dt><dd>Note per il docente</dd>
+  </dl>
+</div>
+
+</body>
+</html>
