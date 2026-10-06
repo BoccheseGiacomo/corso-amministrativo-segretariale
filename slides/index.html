@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI per la gestione documentale</title>
 <meta name="description" content="Slide teoriche — uso dell'intelligenza artificiale per la gestione documentale in segreteria.">
-<link rel="stylesheet" href="style.css?v=22">
-<script src="deck.js?v=22" defer></script>
+<link rel="stylesheet" href="style.css?v=24">
+<script src="deck.js?v=24" defer></script>
 </head>
 <body>
 
@@ -188,7 +188,7 @@
     <i class="arrow" aria-hidden="true"></i>
     <div class="step"><svg class="ic"><use href="#i-plus"/></svg><span><b>2</b> Allega un file con <kbd>+</kbd> <em>(se serve)</em></span></div>
     <i class="arrow" aria-hidden="true"></i>
-    <div class="step"><svg class="ic"><use href="#i-type"/></svg><span><b>3</b> Scrivi la richiesta</span></div>
+    <div class="step"><svg class="ic"><use href="#i-type"/></svg><span><b>3</b> Scrivi il prompt</span></div>
     <i class="arrow" aria-hidden="true"></i>
     <div class="step"><svg class="ic"><use href="#i-send"/></svg><span><b>4</b> Premi invio</span></div>
   </div>
@@ -199,6 +199,28 @@
     ChatGPT gratuito: piano di riserva (pochi caricamenti di file al giorno, memoria limitata).
     Senza credenziali: duck.ai o ChatGPT senza login per scrivere e chattare, oppure lavoro in coppia.
     Primo messaggio di prova: "Ciao, presentati in due righe e dimmi tre cose che puoi fare per chi lavora in segreteria."
+  </aside>
+</section>
+
+<!-- ============ 7 · COSA PUO' FARE ============ -->
+<section class="slide" data-title="Cosa può fare in ufficio">
+  <p class="kicker">Strumenti e concetti di base</p>
+  <h2>Cosa può fare in ufficio</h2>
+  <div class="caps caps8">
+    <div class="cap"><svg class="ic"><use href="#i-pencil"/></svg><h3>Scrivere</h3><p>Email, lettere, avvisi, verbali</p></div>
+    <div class="cap"><svg class="ic"><use href="#i-refresh"/></svg><h3>Riscrivere</h3><p>Tono, lunghezza, stile</p></div>
+    <div class="cap"><svg class="ic"><use href="#i-check"/></svg><h3>Correggere</h3><p>Ortografia, grammatica, punteggiatura</p></div>
+    <div class="cap"><svg class="ic"><use href="#i-globe"/></svg><h3>Tradurre</h3><p>Email e documenti in altre lingue</p></div>
+    <div class="cap"><svg class="ic"><use href="#i-list"/></svg><h3>Riassumere</h3><p>Documenti lunghi, catene di email</p></div>
+    <div class="cap"><svg class="ic"><use href="#i-docq"/></svg><h3>Rispondere su un documento</h3><p>Domande su PDF, contratti, regolamenti</p></div>
+    <div class="cap"><svg class="ic"><use href="#i-image"/></svg><h3>Leggere file e immagini</h3><p>PDF, Excel, foto, scansioni</p></div>
+    <div class="cap"><svg class="ic"><use href="#i-chart"/></svg><h3>Analizzare dati</h3><p>Calcoli e grafici: esegue codice internamente</p></div>
+  </div>
+  <p class="bottom-line">Tutto si chiede <strong>scrivendo</strong>. Più il prompt è chiaro e completo, migliore è il risultato.</p>
+  <aside class="notes">
+    Panoramica: oggi proviamo scrittura, riscrittura e traduzione (esperimento 1), riassunto e domande su un documento (esperimento 2), dati e formule (esperimento 3).
+    Analisi dati: per ora basta dire che può fare calcoli eseguendo codice internamente; lo vediamo nel dettaglio prima dell'esperimento 3.
+    Sottolineare: non ci sono pulsanti speciali da imparare, si comanda tutto con il testo.
   </aside>
 </section>
 
@@ -248,7 +270,7 @@
     <div class="ctx-in">
       <p class="ctx-label"><svg class="ic"><use href="#i-check"/></svg>Vede: ciò che è nella chat</p>
       <ul>
-        <li><svg class="ic"><use href="#i-type"/></svg>La tua richiesta</li>
+        <li><svg class="ic"><use href="#i-type"/></svg>Il tuo prompt</li>
         <li><svg class="ic"><use href="#i-clip"/></svg>I file allegati*</li>
         <li><svg class="ic"><use href="#i-history"/></svg>I messaggi precedenti di questa chat</li>
       </ul>
@@ -322,29 +344,7 @@
     Ogni chat è indipendente. La memoria, dove esiste, conserva solo qualche frammento: non contarci.
     Regola pratica: se gli serve, daglielo. Una chat per ogni lavoro aiuta anche a ritrovare le cose.
     Chat molto lunghe: il modello può perdere di vista le cose dette all'inizio. Meglio chiedere un riassunto e incollarlo in una chat nuova.
-    Nelle versioni gratuite la memoria è limitata: anche un file caricato in questa chat può essere dimenticato (vedi slide 4). Se il modello dice di non vederlo, si riallega insieme alla domanda.
-  </aside>
-</section>
-
-<!-- ============ 7 · COSA PUO' FARE ============ -->
-<section class="slide" data-title="Cosa può fare in ufficio">
-  <p class="kicker">Strumenti e concetti di base</p>
-  <h2>Cosa può fare in ufficio</h2>
-  <div class="caps caps8">
-    <div class="cap"><svg class="ic"><use href="#i-pencil"/></svg><h3>Scrivere</h3><p>Email, lettere, avvisi, verbali</p></div>
-    <div class="cap"><svg class="ic"><use href="#i-refresh"/></svg><h3>Riscrivere</h3><p>Tono, lunghezza, stile</p></div>
-    <div class="cap"><svg class="ic"><use href="#i-check"/></svg><h3>Correggere</h3><p>Ortografia, grammatica, punteggiatura</p></div>
-    <div class="cap"><svg class="ic"><use href="#i-globe"/></svg><h3>Tradurre</h3><p>Email e documenti in altre lingue</p></div>
-    <div class="cap"><svg class="ic"><use href="#i-list"/></svg><h3>Riassumere</h3><p>Documenti lunghi, catene di email</p></div>
-    <div class="cap"><svg class="ic"><use href="#i-docq"/></svg><h3>Rispondere su un documento</h3><p>Domande su PDF, contratti, regolamenti</p></div>
-    <div class="cap"><svg class="ic"><use href="#i-image"/></svg><h3>Leggere file e immagini</h3><p>PDF, Excel, foto, scansioni</p></div>
-    <div class="cap"><svg class="ic"><use href="#i-chart"/></svg><h3>Analizzare dati</h3><p>Calcoli e grafici: esegue codice internamente</p></div>
-  </div>
-  <p class="bottom-line">Tutto si chiede <strong>scrivendo</strong>. Più la richiesta è chiara e completa, migliore è il risultato.</p>
-  <aside class="notes">
-    Panoramica: oggi proviamo scrittura, riscrittura e traduzione (esperimento 1), riassunto e domande su un documento (esperimento 2), dati e formule (esperimento 3).
-    Analisi dati: per ora basta dire che può fare calcoli eseguendo codice internamente; lo vediamo nel dettaglio prima dell'esperimento 3.
-    Sottolineare: non ci sono pulsanti speciali da imparare, si comanda tutto con il testo.
+    Nelle versioni gratuite la memoria è limitata: anche un file caricato in questa chat può essere dimenticato (vedi slide 5). Se il modello dice di non vederlo, si riallega insieme alla domanda.
   </aside>
 </section>
 
@@ -380,9 +380,9 @@
 </section>
 
 <!-- ============ PRINCIPI ============ -->
-<section class="slide" data-title="Principi di una buona richiesta">
-  <p class="kicker">Scrivere le richieste</p>
-  <h2>Principi di una buona richiesta</h2>
+<section class="slide" data-title="Prompting efficace">
+  <p class="kicker">Prompting</p>
+  <h2>Prompting efficace</h2>
   <div class="princ">
     <article class="pc">
       <span class="num">1</span>
@@ -408,17 +408,17 @@
   </div>
   <aside class="notes">
     Tre principi da tenere a mente in tutti gli esperimenti.
-    1) Una richiesta "stile Google" (parole chiave) dà risultati generici: si scrive come si parlerebbe a un collega.
+    1) Un prompt "stile Google" (parole chiave) dà risultati generici: si scrive come si parlerebbe a un collega.
     2) Il modello non conosce la nostra azienda, i nostri clienti, le nostre regole: quello che non scriviamo, se lo inventa o lo ignora.
-    3) Con un documento: controllare che il file sia davvero allegato e che il caricamento sia completato. Se il modello non lo vede, può inventare (come nella prova della slide 5).
+    3) Con un documento: controllare che il file sia davvero allegato e che il caricamento sia completato. Se il modello non lo vede, può inventare (come nella prova della slide 6).
     Conviene allegare il file e fare la domanda nello stesso messaggio: «Leggi e comprendi il file allegato, poi rispondi: …». Così, anche con le versioni gratuite, il file non si perde prima della domanda.
   </aside>
 </section>
 
 <!-- ============ 10 · RICHIESTA ============ -->
-<section class="slide" data-title="Come scrivere una richiesta">
-  <p class="kicker">Scrivere le richieste</p>
-  <h2>Come scrivere una richiesta</h2>
+<section class="slide" data-title="Come scrivere un prompt efficace">
+  <p class="kicker">Prompting</p>
+  <h2>Come scrivere un prompt efficace</h2>
   <div class="rccf">
     <div class="part p-role f">
       <h3>Ruolo</h3><p class="qq">Chi deve essere?</p>
@@ -438,23 +438,23 @@
     </div>
   </div>
   <div class="assembled f">
-    <span class="try-tag">Richiesta completa</span>
+    <span class="try-tag">Prompt completo</span>
     <div class="prompt"><span class="prompt-text"><span class="c-role">Lavori nella segreteria di Occhialeria Dolomiti Srl, un'azienda di occhiali.</span> <span class="c-task">Scrivi un'email al cliente Ottica Bianchi.</span> <span class="c-ctx">L'ordine n. 4521 arriverà con 10 giorni di ritardo per un problema del fornitore.</span> <span class="c-fmt">Tono cortese e professionale, massimo 8 righe, con oggetto.</span></span></div>
   </div>
   <aside class="notes">
     Quattro domande da farsi prima di scrivere: chi deve essere, cosa deve fare, cosa deve sapere, come deve essere il risultato.
     Non serve sempre usarle tutte, ma il contesto è quasi sempre quello che manca.
-    Le schede compaiono una alla volta (avanti), poi la richiesta completa.
+    Le schede compaiono una alla volta (avanti), poi il prompt completo.
   </aside>
 </section>
 
 <!-- ============ 11 · CONFRONTO ============ -->
-<section class="slide" data-title="Esempio a confronto">
-  <p class="kicker">Scrivere le richieste</p>
-  <h2>Esempio a confronto</h2>
+<section class="slide" data-title="Esempi a confronto">
+  <p class="kicker">Prompting</p>
+  <h2>Esempi a confronto</h2>
   <div class="compare">
     <div class="cmp cmp-bad f">
-      <p class="cmp-label">Richiesta vaga</p>
+      <p class="cmp-label">Prompt vago</p>
       <div class="prompt small"><span class="prompt-text">Scrivi un'email per un ritardo.</span></div>
       <div class="email">
         <p><b>Oggetto:</b> Ritardo</p>
@@ -465,7 +465,7 @@
       <span class="verdict v-bad"><svg class="ic"><use href="#i-x"/></svg>Generica, da completare</span>
     </div>
     <div class="cmp cmp-good f">
-      <p class="cmp-label">Richiesta completa</p>
+      <p class="cmp-label">Prompt completo</p>
       <div class="prompt small" data-copy="Lavori nella segreteria di Occhialeria Dolomiti Srl, un'azienda di occhiali. Scrivi un'email al cliente Ottica Bianchi. L'ordine n. 4521 arriverà con 10 giorni di ritardo per un problema del fornitore. Tono cortese e professionale, massimo 8 righe, con oggetto."><span class="prompt-text">Lavori nella segreteria di Occhialeria Dolomiti Srl… Scrivi un'email al cliente Ottica Bianchi… (ruolo, compito, contesto, formato)</span></div>
       <div class="email">
         <p><b>Oggetto:</b> Ordine n. 4521 – nuova data di consegna</p>
@@ -477,14 +477,14 @@
     </div>
   </div>
   <aside class="notes">
-    Dimostrazione dal vivo: prima la richiesta vaga (risultato generico con segnaposto), poi quella completa.
+    Dimostrazione dal vivo: prima il prompt vago (risultato generico con segnaposto), poi quello completo.
     Anche la versione buona va riletta: verificare numero d'ordine, nome del cliente, tempi.
   </aside>
 </section>
 
 <!-- ============ 12 · MIGLIORARE ============ -->
 <section class="slide" data-title="Migliorare il risultato">
-  <p class="kicker">Scrivere le richieste</p>
+  <p class="kicker">Prompting</p>
   <h2>Migliorare il risultato</h2>
   <div class="tips">
     <div class="tipc">
@@ -506,7 +506,7 @@
   </div>
   <p class="bottom-line">È una conversazione: <strong>il primo risultato è una bozza</strong>, si migliora chiedendo.</p>
   <aside class="notes">
-    Non serve scrivere la richiesta perfetta al primo colpo: si corregge dialogando.
+    Non serve scrivere il prompt perfetto al primo colpo: si corregge dialogando.
     "Fatti fare domande" è molto utile quando non sappiamo bene cosa scrivere nel contesto.
   </aside>
 </section>
@@ -517,9 +517,9 @@
   <h2>Esperimento 1 · Scrivere</h2>
   <div class="lab-grid">
     <div class="lstep">
-      <h3><span>1</span>Prima vaga, poi completa</h3>
+      <h3><span>1</span>Prima vago, poi completo</h3>
       <div class="prompt small"><span class="prompt-text">Scrivi un'email per un ritardo.</span></div>
-      <div class="prompt small" data-copy="Lavori nella segreteria di Occhialeria Dolomiti Srl, un'azienda di occhiali. Scrivi un'email al cliente Ottica Bianchi. L'ordine n. 4521 arriverà con 10 giorni di ritardo per un problema del fornitore. Tono cortese e professionale, massimo 8 righe, con oggetto."><span class="prompt-text">Lavori nella segreteria di Occhialeria Dolomiti Srl… (richiesta completa)</span></div>
+      <div class="prompt small" data-copy="Lavori nella segreteria di Occhialeria Dolomiti Srl, un'azienda di occhiali. Scrivi un'email al cliente Ottica Bianchi. L'ordine n. 4521 arriverà con 10 giorni di ritardo per un problema del fornitore. Tono cortese e professionale, massimo 8 righe, con oggetto."><span class="prompt-text">Lavori nella segreteria di Occhialeria Dolomiti Srl… (prompt completo)</span></div>
     </div>
     <div class="lstep">
       <h3><span>2</span>Cambia il tono, nella stessa chat</h3>
@@ -616,7 +616,7 @@
     Risposte corrette (dal regolamento): reclami → risposta entro 3 giorni lavorativi (capitolo Reclami); ferie estive → richiesta entro il 31 marzo.
     Domande difficili: lo smart working NON è citato nel regolamento; per le trasferte è previsto solo il rimborso dell'auto propria (0,35 €/km), i mezzi pubblici NON sono citati.
     Osservare: risponde "non è indicato" oppure inventa? Se non ci casca: "ha fatto bene, ma come facevate a saperlo senza controllare?".
-    Primo messaggio: file allegato e richiesta insieme. Le domande successive nella stessa chat: se il modello non vede più il file, si riallega insieme alla domanda.
+    Primo messaggio: file allegato e prompt insieme. Le domande successive nella stessa chat: se il modello non vede più il file, si riallega insieme alla domanda.
     Strumento: Claude. Gemini gratuito dimentica il PDF dopo pochi messaggi; ChatGPT gratuito ha pochi caricamenti al giorno.
     Il riassunto "dettagliato ma conciso" può includere o no il termine dei 3 giorni per i reclami: chiedere chi l'ha trovato, ed è l'occasione per chiedere «In quale punto lo dice?».
   </aside>
@@ -657,7 +657,7 @@
   <h2>Calcoli e dati: l'uso del codice</h2>
   <div class="flow">
     <div class="fstep">
-      <p class="fnum">1 · Richiesta</p>
+      <p class="fnum">1 · Prompt</p>
       <div class="fbox"><p class="q q-sm">«Calcola il totale delle vendite per mese, poi crea un grafico. Usa il codice per i calcoli.»</p></div>
     </div>
     <i class="farrow" aria-hidden="true"></i>
@@ -838,9 +838,10 @@ grafico(totali)</pre><span class="code-note">esempio semplificato</span></div>
       <h3>Può sbagliare cose semplici</h3>
       <p>Ciò che è facile per noi non è facile per lui.</p>
       <div class="try col">
-        <span class="try-tag">Prova</span>
-        <div class="prompt"><span class="prompt-text">Quante lettere R ci sono nella parola "ferrarre"?</span></div>
-        <span class="try-note">risposta corretta: 4</span>
+        <span class="try-tag">Esempio · fino a poco tempo fa</span>
+        <p class="ex-q">«Quante R ci sono nella parola "strawberry"?»</p>
+        <p class="ex-a ex-diff"><b>IA</b><span>Nella parola "strawberry" ci sono <mark>2 R</mark>.</span></p>
+        <span class="try-note hallu"><svg class="ic"><use href="#i-x"/></svg>Le R sono 3</span>
       </div>
     </article>
     <article class="beh">
@@ -855,7 +856,7 @@ grafico(totali)</pre><span class="code-note">esempio semplificato</span></div>
   </div>
   <aside class="notes">
     1) Esempio di allucinazione: la legge citata non esiste. Il modello non "sa di non sapere": produce una risposta plausibile, con lo stesso tono di quando ha ragione. Per leggi, norme e riferimenti: verificare sempre sulla fonte.
-    2) "ferrarre" ha 4 R. Il modello legge il testo a pezzi, non lettera per lettera: può sbagliare.
+    2) Esempio "strawberry": fino a poco tempo fa molti modelli rispondevano 2 invece di 3, perché leggono il testo a pezzi e non lettera per lettera. Oggi lo fanno quasi sempre giusto: spiegarlo a voce come esempio di errore "banale".
     3) Con i modelli recenti l'errore di calcolo è raro, ma non si può escludere: probabilità bassa, danno potenzialmente alto.
     Prova facoltativa, se avanza tempo (presentarla come "vediamo cosa succede"): «Somma questi importi senza usare il codice, rispondi solo con il totale: 1.284,50 – 937,20 – 2.410,75 – 88,90 – 1.735,40 – 642,15 – 3.119,80 – 504,35 – 1.376,60 – 259,45». Totale corretto: 12.359,10.
     Le prove possono non fallire ogni volta: il punto è che non si può sapere in anticipo.
@@ -930,7 +931,7 @@ grafico(totali)</pre><span class="code-note">esempio semplificato</span></div>
   <p class="bottom-line">Prima di dire che l'IA ha sbagliato, chiediti: <strong>le ho dato tutto quello che le serviva?</strong></p>
   <aside class="notes">
     Molti errori non sono del modello ma di come lo usiamo.
-    Collegare agli esperimenti: chi ha dimenticato di allegare il file? chi ha avuto risposte strane perché la richiesta era troppo corta?
+    Collegare agli esperimenti: chi ha dimenticato di allegare il file? chi ha avuto risposte strane perché il prompt era troppo corto?
     Esempio Excel: non serve che una colonna si chiami esattamente "Vendite" (va bene anche "Importo"), ma il dato deve potersi ricavare dal file. Se non c'è nulla di riconducibile, il modello tira a indovinare.
   </aside>
 </section>

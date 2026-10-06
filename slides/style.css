@@ -639,6 +639,8 @@ mark.ph { background: var(--amber-l); color: #8A6400; padding: 0 4px; border-rad
 
 .pc-note { font-size: 15px; color: var(--muted); font-style: italic; margin-top: -2px; }
 
+.ex-diff mark { white-space: nowrap; }
+
 /* ==========================================================
    Interfaccia (fuori dalla slide)
    ========================================================== */
