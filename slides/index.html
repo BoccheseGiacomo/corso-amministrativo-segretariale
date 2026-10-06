@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI per la gestione documentale</title>
 <meta name="description" content="Slide teoriche — uso dell'intelligenza artificiale per la gestione documentale in segreteria.">
-<link rel="stylesheet" href="style.css?v=15">
-<script src="deck.js?v=15" defer></script>
+<link rel="stylesheet" href="style.css?v=22">
+<script src="deck.js?v=22" defer></script>
 </head>
 <body>
 
@@ -161,6 +161,7 @@
       <h3>Claude</h3>
       <p class="maker">Anthropic</p>
       <p class="url">claude.ai</p>
+      <p class="hint">Accesso anche con l'account Google</p>
     </article>
     <article class="tool">
       <div class="mono m2">GPT</div>
@@ -191,9 +192,11 @@
     <i class="arrow" aria-hidden="true"></i>
     <div class="step"><svg class="ic"><use href="#i-send"/></svg><span><b>4</b> Premi invio</span></div>
   </div>
-  <p class="bottom-line">Funzionano tutti allo stesso modo: scegli quello che preferisci.</p>
+  <p class="bottom-line">Si usano tutti allo stesso modo. Oggi usiamo soprattutto <strong>Claude</strong>: nella versione gratuita è quello che offre di più.</p>
   <aside class="notes">
-    Claude: le prestazioni migliori. Gemini: la registrazione più semplice, basta l'account Google. ChatGPT e Copilot vanno bene comunque.
+    Claude: nella versione gratuita è quello che offre di più (memoria ampia, file, calcoli con il codice). Si accede anche con l'account Google: farlo creare a tutti durante la configurazione.
+    Gemini: registrazione più semplice, va bene per scrivere (esperimento 1), ma nella versione gratuita dimentica i file dopo pochi messaggi e non esegue codice.
+    ChatGPT gratuito: piano di riserva (pochi caricamenti di file al giorno, memoria limitata).
     Senza credenziali: duck.ai o ChatGPT senza login per scrivere e chattare, oppure lavoro in coppia.
     Primo messaggio di prova: "Ciao, presentati in due righe e dimmi tre cose che puoi fare per chi lavora in segreteria."
   </aside>
@@ -204,15 +207,15 @@
   <p class="kicker">Strumenti e concetti di base</p>
   <h2>Versioni e modelli</h2>
   <div class="versions">
-    <table class="tbl">
+    <table class="tbl tbl-tight">
       <thead>
         <tr><th></th><th>Gratuita</th><th class="th-pro">A pagamento</th></tr>
       </thead>
       <tbody>
         <tr><th>Accesso</th><td>Con un account</td><td>Abbonamento, circa 20&nbsp;€ al mese</td></tr>
         <tr><th>Modelli</th><td>Buoni per l'uso quotidiano</td><td>Più capaci nei compiti complessi</td></tr>
-        <tr><th>Limiti</th><td>Messaggi e file limitati</td><td>Limiti più alti</td></tr>
-        <tr><th>Adatta per</th><td>Imparare, uso occasionale</td><td>Uso intensivo, lavoro quotidiano</td></tr>
+        <tr><th>Limiti</th><td>Messaggi e file limitati, memoria limitata anche per i file</td><td>Limiti più alti</td></tr>
+        <tr><th>Calcoli con il codice</th><td>Claude sì · ChatGPT limitato · Gemini no</td><td>Sì</td></tr>
       </tbody>
     </table>
     <div class="side-boxes">
@@ -227,8 +230,12 @@
       </div>
     </div>
   </div>
+  <p class="bottom-line">Le versioni gratuite possono <strong>dimenticare un file</strong> anche nella stessa chat: Gemini gratuito dopo pochi messaggi. Per questo oggi usiamo <strong>Claude</strong>, che gratis offre di più.</p>
   <aside class="notes">
     Informativo, non promozionale: serve a capire perché oggi potreste incontrare dei limiti (numero di messaggi, file caricabili).
+    Memoria delle versioni gratuite (fonti di ottobre 2026, può cambiare): Claude circa 200.000 token, ChatGPT circa 27.000, Gemini circa 32.000. Con poca memoria i file "escono" dalla chat dopo pochi messaggi.
+    Gemini gratuito: dimentica i file dopo circa due messaggi e non esegue codice. Con un account aziendale (Workspace) va diversamente.
+    ChatGPT gratuito: circa 3 caricamenti di file al giorno, analisi dati limitata.
     Modelli aperti: un'azienda può tenerli "in casa", utile quando i dati sono riservati. Ci torniamo nella parte sulla sicurezza.
   </aside>
 </section>
@@ -242,9 +249,10 @@
       <p class="ctx-label"><svg class="ic"><use href="#i-check"/></svg>Vede: ciò che è nella chat</p>
       <ul>
         <li><svg class="ic"><use href="#i-type"/></svg>La tua richiesta</li>
-        <li><svg class="ic"><use href="#i-clip"/></svg>I file allegati</li>
+        <li><svg class="ic"><use href="#i-clip"/></svg>I file allegati*</li>
         <li><svg class="ic"><use href="#i-history"/></svg>I messaggi precedenti di questa chat</li>
       </ul>
+      <p class="ctx-foot">* I modelli gratuiti possono perdere i file anche se allegati prima nella chat.</p>
     </div>
     <div class="ctx-out">
       <p class="ctx-label"><svg class="ic"><use href="#i-eyeoff"/></svg>Non vede: tutto il resto</p>
@@ -303,6 +311,7 @@
       <div><svg class="ic"><use href="#i-plus"/></svg><p><strong>Lavoro nuovo</strong> → apri una nuova chat</p></div>
       <div><svg class="ic"><use href="#i-history"/></svg><p><strong>Stesso lavoro</strong> → resta nella stessa chat</p></div>
       <div><svg class="ic"><use href="#i-swap"/></svg><p><strong>Chat troppo lunga</strong> → aprine una nuova, portando un riassunto</p></div>
+      <div><svg class="ic"><use href="#i-clip"/></svg><p><strong>Non vede più il file</strong> → riallegalo insieme alla domanda</p></div>
     </div>
   </div>
   <div class="handoff">
@@ -313,6 +322,7 @@
     Ogni chat è indipendente. La memoria, dove esiste, conserva solo qualche frammento: non contarci.
     Regola pratica: se gli serve, daglielo. Una chat per ogni lavoro aiuta anche a ritrovare le cose.
     Chat molto lunghe: il modello può perdere di vista le cose dette all'inizio. Meglio chiedere un riassunto e incollarlo in una chat nuova.
+    Nelle versioni gratuite la memoria è limitata: anche un file caricato in questa chat può essere dimenticato (vedi slide 4). Se il modello dice di non vederlo, si riallega insieme alla domanda.
   </aside>
 </section>
 
@@ -365,7 +375,7 @@
   <p class="bottom-line">Non si può prevedere dove sbaglierà: <strong>per questo si verifica</strong>.</p>
   <aside class="notes">
     "Allucinazione": il modello produce un'informazione falsa ma plausibile, con lo stesso tono di quando ha ragione.
-    Non sbaglia "come un umano": cose per noi banali possono essere difficili per lui e viceversa. Lo vedremo durante i laboratori.
+    Non sbaglia "come un umano": cose per noi banali possono essere difficili per lui e viceversa. Lo vedremo durante gli esperimenti.
   </aside>
 </section>
 
@@ -390,17 +400,18 @@
     </article>
     <article class="pc">
       <span class="num">3</span>
-      <h3>Con un file: prima fallo leggere, poi chiedi</h3>
-      <p>Prima chiedi di leggere e comprendere il documento, poi fai le domande.</p>
-      <div class="ex-no"><b>Così no</b><span>File allegato e subito «Entro quando le ferie?»</span></div>
-      <div class="ex-yes"><b>Così sì</b><span>«Ti allego il regolamento. Leggilo e comprendilo.» Poi la domanda.</span></div>
+      <h3>Con un file: assicurati che sia allegato e leggibile</h3>
+      <p>Se il modello non vede il file, può inventare le informazioni.</p>
+      <div class="ex-no"><b>Così no</b><span>«Entro quando vanno chieste le ferie?» senza aver allegato il regolamento</span></div>
+      <div class="ex-yes"><b>Così sì</b><span>«Leggi e comprendi il regolamento allegato, poi rispondi: entro quando vanno chieste le ferie estive?»</span></div>
     </article>
   </div>
   <aside class="notes">
     Tre principi da tenere a mente in tutti gli esperimenti.
     1) Una richiesta "stile Google" (parole chiave) dà risultati generici: si scrive come si parlerebbe a un collega.
     2) Il modello non conosce la nostra azienda, i nostri clienti, le nostre regole: quello che non scriviamo, se lo inventa o lo ignora.
-    3) Con un documento: un primo messaggio per farlo leggere, poi le domande una alla volta. Le risposte sono più precise.
+    3) Con un documento: controllare che il file sia davvero allegato e che il caricamento sia completato. Se il modello non lo vede, può inventare (come nella prova della slide 5).
+    Conviene allegare il file e fare la domanda nello stesso messaggio: «Leggi e comprendi il file allegato, poi rispondi: …». Così, anche con le versioni gratuite, il file non si perde prima della domanda.
   </aside>
 </section>
 
@@ -559,7 +570,7 @@
       <p class="lhead"><svg class="ic"><use href="#i-check"/></svg>Va bene</p>
       <ul>
         <li>Ruolo, compito, contesto e formato</li>
-        <li>Correggere nella stessa chat: «più breve», «più formale»</li>
+        <li>Correggere nella stessa chat: «Riscrivila con un tono più formale»</li>
         <li>Farsi fare le domande prima di scrivere</li>
       </ul>
     </div>
@@ -574,12 +585,14 @@
 <section class="slide s-lab" data-title="Esperimento 2 · Comprendere un documento">
   <p class="kicker lab-kicker"><svg class="ic"><use href="#i-users"/></svg>Pratica · in coppia</p>
   <h2>Esperimento 2 · Comprendere un documento</h2>
-  <a class="dl" href="../materiali/regolamento_segreteria_occhialeria_dolomiti.pdf" download target="_blank" rel="noopener"><svg class="ic"><use href="#i-dl"/></svg><span><strong>Scarica il PDF</strong> · Regolamento interno della segreteria (9 pagine) · allegalo con <kbd>+</kbd></span></a>
+  <div class="dl-row">
+    <a class="dl" href="../materiali/regolamento_segreteria_occhialeria_dolomiti.pdf" download target="_blank" rel="noopener"><svg class="ic"><use href="#i-dl"/></svg><span><strong>Scarica il PDF</strong> · Regolamento della segreteria</span></a>
+    <p class="dl-tip">Consigliato: <strong>Claude</strong>. Se non vede più il file, riallegatelo insieme alla domanda.</p>
+  </div>
   <div class="lab-grid">
     <div class="lstep">
-      <h3><span>1</span>Fallo leggere, poi riassumi</h3>
-      <div class="prompt small"><span class="prompt-text">Ti allego il regolamento interno della segreteria. Leggilo e comprendilo.</span></div>
-      <div class="prompt small"><span class="prompt-text">Fammi un riassunto dettagliato ma conciso di questo documento.</span></div>
+      <h3><span>1</span>Allega e riassumi</h3>
+      <div class="prompt small"><span class="prompt-text">Leggi e comprendi il regolamento allegato, poi fammi un riassunto dettagliato ma conciso.</span></div>
     </div>
     <div class="lstep">
       <h3><span>2</span>Organizza le informazioni</h3>
@@ -603,7 +616,8 @@
     Risposte corrette (dal regolamento): reclami → risposta entro 3 giorni lavorativi (capitolo Reclami); ferie estive → richiesta entro il 31 marzo.
     Domande difficili: lo smart working NON è citato nel regolamento; per le trasferte è previsto solo il rimborso dell'auto propria (0,35 €/km), i mezzi pubblici NON sono citati.
     Osservare: risponde "non è indicato" oppure inventa? Se non ci casca: "ha fatto bene, ma come facevate a saperlo senza controllare?".
-    Primo messaggio: solo lettura e comprensione, poi le richieste.
+    Primo messaggio: file allegato e richiesta insieme. Le domande successive nella stessa chat: se il modello non vede più il file, si riallega insieme alla domanda.
+    Strumento: Claude. Gemini gratuito dimentica il PDF dopo pochi messaggi; ChatGPT gratuito ha pochi caricamenti al giorno.
     Il riassunto "dettagliato ma conciso" può includere o no il termine dei 3 giorni per i reclami: chiedere chi l'ha trovato, ed è l'occasione per chiedere «In quale punto lo dice?».
   </aside>
 </section>
@@ -624,7 +638,7 @@
     <div class="lcol lcol-good f">
       <p class="lhead"><svg class="ic"><use href="#i-check"/></svg>Va bene</p>
       <ul>
-        <li>Prima fargli leggere il documento, poi fare le domande</li>
+        <li>Allegare il file e fare la domanda nello stesso messaggio</li>
         <li>«In quale punto lo dice? Riporta la frase esatta.»</li>
         <li>«È indicato nel documento? Dove?»</li>
         <li>Controllare la frase nel PDF</li>
@@ -676,7 +690,10 @@ grafico(totali)</pre><span class="code-note">esempio semplificato</span></div>
   </div>
   <div class="code-msgs">
     <p class="key-msg">Con il codice il risultato è <strong>calcolato</strong>, non stimato.</p>
-    <p class="warn"><svg class="ic"><use href="#i-alert"/></svg><span>Se il compito è rischioso, controlla comunque che abbia letto i dati giusti e che il codice sia corretto.</span></p>
+    <div class="code-notes">
+      <p class="warn"><svg class="ic"><use href="#i-alert"/></svg><span>Se il compito è rischioso, controlla comunque che abbia letto i dati giusti e che il codice sia corretto.</span></p>
+      <p class="info"><svg class="ic"><use href="#i-code"/></svg><span>Versioni gratuite: <strong>Claude</strong> esegue codice, <strong>Gemini no</strong>.</span></p>
+    </div>
   </div>
   <aside class="notes">
     Senza codice il modello "stima" il risultato come se facesse il calcolo a mente: con numeri lunghi sbaglia facilmente.
@@ -696,8 +713,7 @@ grafico(totali)</pre><span class="code-note">esempio semplificato</span></div>
     </div>
     <div class="mode">
       <p class="mode-label"><span>2</span>Allega il file (in una nuova chat)</p>
-      <div class="prompt small"><span class="prompt-text">Ti allego il file delle vendite. Leggilo e descrivimi cosa contiene.</span></div>
-      <div class="prompt small"><span class="prompt-text">Uso Excel in italiano. Scrivimi la formula per calcolare il totale di "Ottica Bianchi" e spiegami come funziona.</span></div>
+      <div class="prompt small"><span class="prompt-text">Leggi e comprendi il file allegato. Uso Excel in italiano: scrivimi la formula per calcolare il totale di "Ottica Bianchi" e spiegami come funziona.</span></div>
       <p class="mode-note">Legge da solo colonne e intestazioni: la formula è su misura. Solo file senza dati personali.</p>
     </div>
   </div>
@@ -714,7 +730,7 @@ grafico(totali)</pre><span class="code-note">esempio semplificato</span></div>
   </div>
   <aside class="notes">
     Dimostrazione dal vivo con il file materiali/vendite_occhialeria_dolomiti.xlsx (foglio Vendite: A Data, B Cliente, C Prodotto, D Importo, righe 2–200).
-    Modo 1: si descrive il foglio. Modo 2: si allega il file, prima lo si fa leggere, poi si chiede la formula.
+    Modo 1: si descrive il foglio. Modo 2: si allega il file e nello stesso messaggio si chiede la formula.
     Totale corretto di Ottica Bianchi: 83.227,81 € (foglio Soluzioni).
     Una formula si può leggere e verificare: come il codice, fa un calcolo esatto. Il rischio è che punti alle celle sbagliate: per questo si prova.
     Se si dimentica "Excel in italiano", spesso arriva =SUMIF(B2:B200,"Ottica Bianchi",D2:D200): in Excel italiano dà errore.
@@ -725,11 +741,14 @@ grafico(totali)</pre><span class="code-note">esempio semplificato</span></div>
 <section class="slide s-lab" data-title="Esperimento 3 · Dati e formule">
   <p class="kicker lab-kicker"><svg class="ic"><use href="#i-users"/></svg>Pratica · in coppia</p>
   <h2>Esperimento 3 · Dati e formule</h2>
-  <a class="dl" href="../materiali/vendite_occhialeria_dolomiti.xlsx" download target="_blank" rel="noopener"><svg class="ic"><use href="#i-dl"/></svg><span><strong>Scarica il file Excel</strong> · Vendite di Occhialeria Dolomiti · allegalo con <kbd>+</kbd></span></a>
+  <div class="dl-row">
+    <a class="dl" href="../materiali/vendite_occhialeria_dolomiti.xlsx" download target="_blank" rel="noopener"><svg class="ic"><use href="#i-dl"/></svg><span><strong>Scarica il file Excel</strong> · Vendite</span></a>
+    <p class="dl-tip">Consigliato: <strong>Claude</strong>. Se non vede più il file, riallegatelo insieme alla domanda.</p>
+  </div>
   <div class="lab-grid">
     <div class="lstep">
-      <h3><span>1</span>Fallo leggere</h3>
-      <div class="prompt small"><span class="prompt-text">Ti allego il file delle vendite. Leggilo e descrivimi cosa contiene.</span></div>
+      <h3><span>1</span>Esplora il file</h3>
+      <div class="prompt small"><span class="prompt-text">Leggi il file allegato e descrivimi cosa contiene.</span></div>
     </div>
     <div class="lstep">
       <h3><span>2</span>Fatti dare la formula</h3>
@@ -752,7 +771,7 @@ grafico(totali)</pre><span class="code-note">esempio semplificato</span></div>
     Totale corretto di Ottica Bianchi: 83.227,81 € (58 righe). Totale generale: 239.392,08 €.
     Formula attesa: =SOMMA.SE(B2:B200; "Ottica Bianchi"; D2:D200).
     Il passo 4 è per chi non riesce a caricare il file (limiti della versione gratuita o niente account).
-    Grafico: non tutti gli strumenti gratuiti lo fanno; in coppia si prova sull'altro PC.
+    Strumento: Claude (nella versione gratuita esegue codice). Gemini gratuito non esegue codice e dimentica il file: va bene solo per la formula descrivendo il foglio (passo 4).
   </aside>
 </section>
 
@@ -897,7 +916,7 @@ grafico(totali)</pre><span class="code-note">esempio semplificato</span></div>
     </article>
     <article class="hm">
       <p class="hm-bad"><svg class="ic"><use href="#i-x"/></svg><span>Dimenticare di caricare il file</span></p>
-      <p class="hm-good"><svg class="ic"><use href="#i-check"/></svg><span>Prima di inviare, controlla che l'allegato ci sia</span></p>
+      <p class="hm-good"><svg class="ic"><use href="#i-check"/></svg><span>Prima di inviare, controlla che l'allegato ci sia: altrimenti può inventare</span></p>
     </article>
     <article class="hm">
       <p class="hm-bad"><svg class="ic"><use href="#i-x"/></svg><span>Chiedere «le vendite» di un Excel in cui nessuna colonna le rappresenta</span></p>
